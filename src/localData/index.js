@@ -50,4 +50,13 @@ export const localData = [
     productDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti provident, mollitia at reiciendis ullam numquam neque dolorem maiores amet eos hic in fugit expedita necessitatibus.",
   },
+  {
+    productName: "Krem2",
+    productPrice: 499,
+    productQuantity: 1,
+    productCategory: "kremy",
+    productImage: image5,
+    productDescription:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti provident, mollitia at reiciendis ullam numquam neque dolorem maiores amet eos hic in fugit expedita necessitatibus.",
+  },
 ];
