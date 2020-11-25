@@ -12,11 +12,23 @@ import CosmeticStoreContext from "./context";
 
 const Root = () => {
   const [products, setProducts] = useState([...localData]);
+  const 
+  const [category, setCategory] = useState("all");
 
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+  };
+
+
+  const filterProducts = () => {
+
+  }
   return (
     <>
       <GlobalStyle />
-      <CosmeticStoreContext.Provider value={{ products }}>
+      <CosmeticStoreContext.Provider
+        value={{ products, category, handleCategoryChange }}
+      >
         <BrowserRouter>
           <MainTemplate>
             <Switch>
