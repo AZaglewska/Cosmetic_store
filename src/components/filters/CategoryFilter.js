@@ -17,14 +17,8 @@ const useStyles = makeStyles((theme) => ({
 const CategoryFilter = () => {
   const context = useContext(CosmeticStoreContext);
 
-  const { products } = context;
+  const { products, category, handleCategoryChange } = context;
   const classes = useStyles();
-
-  const [category, setCategory] = useState("all");
-
-  const handleChange = (e) => {
-    setCategory(e.target.value);
-  };
 
   const productsCategories = [
     "all",
@@ -43,7 +37,7 @@ const CategoryFilter = () => {
       <Select
         native
         value={category}
-        onChange={handleChange}
+        onChange={handleCategoryChange}
         label="Kategoria"
         inputProps={{
           name: "category",
