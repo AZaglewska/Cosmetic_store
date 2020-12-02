@@ -12,22 +12,35 @@ import CosmeticStoreContext from "./context";
 
 const Root = () => {
   const [products, setProducts] = useState([...localData]);
-  const 
   const [category, setCategory] = useState("all");
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [cart, setCart] = useState([]);
+
+  const handleCartOpen = () => {
+    setIsCartOpen(true);
+  };
+
+  const handleCartClose = () => {
+    setIsCartOpen(false);
+  };
 
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
   };
 
-
-  const filterProducts = () => {
-
-  }
+  // const filterProducts = () => {};
   return (
     <>
       <GlobalStyle />
       <CosmeticStoreContext.Provider
-        value={{ products, category, handleCategoryChange }}
+        value={{
+          products,
+          category,
+          handleCategoryChange,
+          isCartOpen,
+          handleCartClose,
+          handleCartOpen,
+        }}
       >
         <BrowserRouter>
           <MainTemplate>
