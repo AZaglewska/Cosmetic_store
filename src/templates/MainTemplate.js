@@ -1,10 +1,12 @@
 import React from "react";
 import Navbar from "../components/navigations/Navbar";
+import Cart from "../components/Cart";
 
 const MainTemplate = ({ children }) => {
   return (
     <>
       <Navbar />
+      <Cart />
       {children}
     </>
   );
