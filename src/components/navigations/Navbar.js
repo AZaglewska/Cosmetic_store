@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import CosmeticStoreContext from "../../context";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { routes } from "../../routes";
+import BagIcon from "../../assets/icons/shopping-bags.svg";
 
 const Navbar = () => {
+  const context = useContext(CosmeticStoreContext);
+
+  const { handleCartOpen } = context;
+
   const StyledContainer = styled.div`
     display: flex;
     justify-content: flex-end;
@@ -37,12 +43,22 @@ const Navbar = () => {
     }
   `;
 
+  const ShopButton = styled.button`
+    background-image: url(${BagIcon});
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    background-position: contain;
+  `;
+
   return (
     <StyledContainer>
       <NavLink to={routes.home}>Home</NavLink>
       <NavLink to={routes.about}>About</NavLink>
       <NavLink to={routes.products}>Products</NavLink>
       <NavLink to={routes.contact}>Contact</NavLink>
+      <ShopButton onClick={handleCartOpen}>Cart</ShopButton>
     </StyledContainer>
   );
 };
