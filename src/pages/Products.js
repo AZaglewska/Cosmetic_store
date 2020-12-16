@@ -1,6 +1,6 @@
 import React from "react";
 import ProductsFilterMenu from "../components/filters/ProductsFilterMenu";
-import ProductsList from "../components/ProductsList";
+import ProductsList from "../components/ProductsList/ProductsList";
 
 const Products = () => {
   return (
