@@ -45,7 +45,11 @@ const CategoryFilter = () => {
         }}
       >
         {productsCategories.map((productsCategory) => {
-          return <option value={productsCategory}>{productsCategory}</option>;
+          return (
+            <option key={productsCategory} value={productsCategory}>
+              {productsCategory}
+            </option>
+          );
         })}
 
         {/* <option value={"all"}>Wszystkie</option>
