@@ -6,6 +6,7 @@ import image5 from "../assets/images/pexels-karolina-grabowska-4202326.jpg";
 
 export const localData = [
   {
+    productId: 1,
     productName: "Żel",
     productPrice: 29,
     productQuantity: 1,
@@ -15,6 +16,7 @@ export const localData = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti provident, mollitia at reiciendis ullam numquam neque dolorem maiores amet eos hic in fugit expedita necessitatibus.",
   },
   {
+    productId: 2,
     productName: "Serum",
     productPrice: 199,
     productQuantity: 1,
@@ -24,6 +26,7 @@ export const localData = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti provident, mollitia at reiciendis ullam numquam neque dolorem maiores amet eos hic in fugit expedita necessitatibus.",
   },
   {
+    productId: 3,
     productName: "Peeling",
     productPrice: 59,
     productQuantity: 1,
@@ -33,6 +36,7 @@ export const localData = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti provident, mollitia at reiciendis ullam numquam neque dolorem maiores amet eos hic in fugit expedita necessitatibus.",
   },
   {
+    productId: 4,
     productName: "Maseczka",
     productPrice: 9,
     productQuantity: 1,
@@ -42,6 +46,7 @@ export const localData = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti provident, mollitia at reiciendis ullam numquam neque dolorem maiores amet eos hic in fugit expedita necessitatibus.",
   },
   {
+    productId: 5,
     productName: "Krem",
     productPrice: 299,
     productQuantity: 1,
@@ -51,6 +56,7 @@ export const localData = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti provident, mollitia at reiciendis ullam numquam neque dolorem maiores amet eos hic in fugit expedita necessitatibus.",
   },
   {
+    productId: 6,
     productName: "Krem2",
     productPrice: 499,
     productQuantity: 1,
