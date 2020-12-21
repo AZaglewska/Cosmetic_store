@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import CosmeticStoreContext from "../../context";
 import { Link } from "react-router-dom";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { routes } from "../../routes";
-import BagIcon from "../../assets/icons/shopping-bag.svg";
-import SearchIcon from "../../assets/icons/search.svg";
-import CloseIcon from "../../assets/icons/close.svg";
-import GifLogo from "../../assets/gif/Nature.gif";
+import bagIcon from "../../assets/icons/shopping-bag.svg";
+import searchIcon from "../../assets/icons/search.svg";
+import closeIcon from "../../assets/icons/close.svg";
+import gifLogo from "../../assets/gif/Nature.gif";
 import Button from "../atoms/Button";
+import { zoomIn } from "../../GlobalStyles/animations";
 
 const StyledContainerNav = styled.div`
   display: flex;
@@ -28,25 +29,19 @@ const StyledContainer = styled.div`
 const StyledImgContainer = styled.div`
   width: 120px;
   height: 66px;
-  background-image: url(${GifLogo});
+  background-image: url(${gifLogo});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
   margin-right: auto;
 `;
 
-const zoomInn = keyframes`
-
-0% {
-  opacity: 0;
-  -webkit-transform: scale3d(.3, .3, .3);
-  transform: scale3d(.3, .3, .3);
-  }
-  50% {
-  opacity: 1;
-  }
-
+const StyledSearchInputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
 `;
+
 const StyledInput = styled.input`
   align-self: center;
   justify-content: center;
@@ -54,22 +49,18 @@ const StyledInput = styled.input`
   background-color: transparent;
   border: none;
   border-bottom: 2px solid ${({ theme }) => theme.colors.smokeyGrey};
-  margin: 0 auto;
-  animation: ${zoomInn} 0.8s;
-  /* animation-fill-mode: both; */
+  animation: ${zoomIn} 0.8s;
+  position: relative;
+`;
 
-  &:before {
-    content: "";
-    /* display: block; */
-    background-image: url(${SearchIcon});
-    background-repeat: no-repeat;
-    /* vertical-align: middle; */
-    margin: 5px;
-    display: inline-block;
-    height: 19px;
-    width: 19px;
-    background-size: 100% 100%;
-  }
+const SearchInputIcon = styled.div`
+  background-image: url(${({ searchIcon }) => searchIcon});
+  background-size: 70%;
+  background-position: 50%;
+  height: 19px;
+  width: 19px;
+  background-repeat: no-repeat;
+  animation: ${zoomIn} 0.8s;
 `;
 
 const NavLink = styled(Link)`
@@ -80,7 +71,7 @@ const NavLink = styled(Link)`
   font-weight: bold;
   display: inline-block;
   position: relative;
-  animation: ${zoomInn} 0.8s;
+  animation: ${zoomIn} 0.8s;
   /* font-family: ${({ theme }) => theme.fontFamily.mainFont}, sans-serif; */
   &:after {
     content: "";
@@ -115,26 +106,26 @@ const Navbar = () => {
       {isSearchBarOpen ? (
         <>
           <StyledContainer>
-            <StyledInput placeholder="search" />
-            <Button
-              closeIcon={CloseIcon}
-              onClickFn={handleSearchBarClose}
-            ></Button>
+            <StyledSearchInputWrapper>
+              <SearchInputIcon searchIcon={searchIcon} />
+              <StyledInput placeholder="search" />
+            </StyledSearchInputWrapper>
+            <Button closeIcon={closeIcon} onClickFn={handleSearchBarClose} />
           </StyledContainer>
         </>
       ) : (
         <StyledContainerNav>
-          <StyledImgContainer>{/* <img src={GifLogo} /> */}</StyledImgContainer>
+          <StyledImgContainer></StyledImgContainer>
 
           <NavLink to={routes.home}>Home</NavLink>
           <NavLink to={routes.about}>About</NavLink>
           <NavLink to={routes.products}>Products</NavLink>
           <NavLink to={routes.contact}>Contact</NavLink>
-          <Button cartIcon={BagIcon} onClickFn={handleCartOpen}>
+          <Button cartIcon={bagIcon} onClickFn={handleCartOpen}>
             {cartQuantity}
           </Button>
           <Button
-            searchIcon={SearchIcon}
+            searchIcon={searchIcon}
             onClickFn={handleSearchBarOpen}
           ></Button>
         </StyledContainerNav>
