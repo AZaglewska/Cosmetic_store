@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import { zoomIn } from "../../GlobalStyles/animations";
 
 const StyledButton = styled.button`
   color: white;
@@ -29,6 +30,7 @@ const StyledButton = styled.button`
       background-position: 50% 24%;
       color: #4ea69e;
       font-size: 16px;
+      animation: ${zoomIn} 0.8s;
     `}
 
     ${({ searchIcon }) =>
@@ -43,6 +45,7 @@ const StyledButton = styled.button`
       /* background-position: 50% 54%; */
       /* color: #4ea69e;
       font-size: 16px; */
+      animation: ${zoomIn} 0.8s;
     `}
 
  
@@ -56,7 +59,7 @@ const StyledButton = styled.button`
       border: none;
       background-size: 40%;
       background-position: 59% 64%;
-
+      animation: ${zoomIn} 0.8s;
       /* color: #4ea69e;
       font-size: 16px; */
     `}
