@@ -17,13 +17,13 @@ const useStyles = makeStyles((theme) => ({
 const CategoryFilter = () => {
   const context = useContext(CosmeticStoreContext);
 
-  const { products, category, handleCategoryChange } = context;
+  const { initialProductState, category, handleCategoryChange } = context;
   const classes = useStyles();
 
   const productsCategories = [
     "all",
     ...new Set(
-      products.map((product) => {
+      initialProductState.map((product) => {
         return product.productCategory;
       })
     ),
