@@ -15,15 +15,14 @@ const StyledContainerNav = styled.div`
   justify-content: flex-end;
   align-items: center;
   padding: 5px;
-  height: 80px;
-  background-color: ${({ theme }) => theme.colors.lightGrey};
+  background-color: #eaeef4;
 `;
 const StyledContainer = styled.div`
   display: flex;
   justify-content: center;
   padding: 5px;
   height: 60px;
-  background-color: ${({ theme }) => theme.colors.lightGrey};
+  background-color: transparent;
 `;
 
 const StyledImgContainer = styled.div`
