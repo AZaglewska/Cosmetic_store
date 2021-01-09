@@ -28,9 +28,11 @@ const StyledButton = styled.button`
       border: none;
       background-size: 80%;
       background-position: 50% 24%;
-      color: #4ea69e;
+      color: #000000;
       font-size: 16px;
       animation: ${zoomIn} 0.8s;
+      margin: 0 10px;
+      padding: 23px;
     `}
 
     ${({ searchIcon }) =>
@@ -45,6 +47,7 @@ const StyledButton = styled.button`
       /* background-position: 50% 54%; */
       /* color: #4ea69e;
       font-size: 16px; */
+      /* margin-left: auto; */
       animation: ${zoomIn} 0.8s;
     `}
 
@@ -57,7 +60,7 @@ const StyledButton = styled.button`
       background-repeat: no-repeat;
       background-color: transparent;
       border: none;
-      background-size: 40%;
+      background-size: 50%;
       background-position: 59% 64%;
       animation: ${zoomIn} 0.8s;
       /* color: #4ea69e;
