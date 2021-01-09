@@ -1,5 +1,6 @@
 import React from "react";
 import CategoryFilter from "./CategoryFilter";
+import FreeDeliveryFilter from "./FreeDeliveryFilter";
 import PriceFilter from "./PriceFilter";
 import ProductNameFilter from "./ProductNameFilter";
 
@@ -10,6 +11,7 @@ const ProductsFilterMenu = () => {
       <CategoryFilter />
       <PriceFilter />
       <ProductNameFilter />
+      <FreeDeliveryFilter />
     </>
   );
 };
