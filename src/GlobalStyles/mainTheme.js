@@ -1,8 +1,8 @@
 export const mainTheme = {
   colors: {
-    lightGrey: "rgba(194, 200, 214, 0.94)",
+    lightGrey: "#ced4da",
     smokeyGrey: "rgba(144, 149, 162, 0.8)",
-    ocean: "rgb(138, 254, 254)",
+    pink: "#ECCADA",
   },
 
   fontSize: {
