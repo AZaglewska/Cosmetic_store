@@ -1,20 +1,14 @@
 .slider-container {
-  z-index: 2;
+  /* z-index: 9; */
   display: flex;
   flex-direction: column;
-  /* justify-content: flex-start; */
+  justify-content: center;
   align-items: flex-start;
-  margin-top: 2%;
   width: 100%;
   height: 100%;
 }
-
-.awssld__content > img {
-  object-fit: contain;
-}
-
 .slider-image {
-  position: absolute;
+  /* position: absolute; */
   z-index: -1;
   left: 0;
   top: 0;
@@ -22,28 +16,43 @@
   height: 100%;
 }
 
+.slider-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 150px;
+}
+
+.slider-content-second {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: -125px 0px 0px 100px;
+}
+
 .slider-title {
   font-size: 80px;
-  color: pink;
+  color: #eccada;
   animation-name: text-animation;
   animation-duration: 3s;
   animation-delay: 1s;
   animation-fill-mode: forwards;
   opacity: 0;
   position: relative;
+  font-family: "Satisfy", cursive;
+  font-weight: 100;
 }
 
 .slider-title-second {
   font-size: 80px;
-  color: pink;
+  color: #eccada;
   animation-name: text-animation;
   animation-duration: 3s;
   animation-delay: 1s;
   animation-fill-mode: forwards;
   opacity: 0;
-  /* position: absolute; */
-  /* top: 25%; */
-  /* left: 20px; */
+  font-family: "Satisfy", cursive;
+  font-weight: 100;
   position: relative;
   margin: 150px 0 0 10px;
 }
@@ -55,6 +64,7 @@
   animation-delay: 1s;
   animation-fill-mode: forwards;
   opacity: 0;
+  margin-top: -25px;
 }
 
 .slider-text-second {
@@ -69,20 +79,34 @@
 .slider-button {
   padding: 20px 50px;
   font-size: 30px;
-  color: white;
+  border: none;
+  color: rgba(255, 255, 255, 0.548);
   cursor: pointer;
   outline: none;
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border-radius: 5px;
+  animation-name: text-animation;
+  animation-duration: 3s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+  margin-top: 40px;
+  transition: ease 0.7s;
+  border: 2px solid rgba(86, 100, 86, 0.253);
+  background: rgba(255, 255, 255, 0.113);
+  backdrop-filter: blur(1px);
+  border: 2px solid rgba(68, 82, 68, 0.438);
+}
+
+.slider-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(18, 65, 38, 0.33);
   backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border-radius: 10px;
 }
 
 @keyframes text-animation {
   0% {
     opacity: 0;
-    left: -1000px;
+    left: -100px;
   }
 
   100% {
