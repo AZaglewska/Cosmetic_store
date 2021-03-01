@@ -2,7 +2,10 @@ export const mainTheme = {
   colors: {
     lightGrey: "#ced4da",
     smokeyGrey: "rgba(144, 149, 162, 0.8)",
+    transparentGrey: "rgba(201, 201, 201, 0.45)",
     pink: "#ECCADA",
+    darkPink: "#cea1b6",
+    lightYellow: "#fffada",
   },
 
   fontSize: {
