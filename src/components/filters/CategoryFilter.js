@@ -1,24 +1,24 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import CosmeticStoreContext from "../../context";
-import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import {
+  BootstrapInput,
+  useStyles,
+} from "./filtersStyles/CategoryFilterStyles";
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
 const CategoryFilter = () => {
+  const classes = useStyles();
+  const [categories, setCategories] = React.useState("");
+  const handleChange = (event) => {
+    setCategories(event.target.value);
+  };
+
   const context = useContext(CosmeticStoreContext);
 
   const { initialProductState, category, handleCategoryChange } = context;
-  const classes = useStyles();
 
   const productsCategories = [
     "all",
@@ -29,36 +29,28 @@ const CategoryFilter = () => {
     ),
   ];
 
-  console.log(productsCategories);
-
   return (
-    <FormControl variant="outlined" className={classes.formControl}>
-      <InputLabel htmlFor="outlined-age-native-simple">Kategoria</InputLabel>
-      <Select
-        native
-        value={category}
-        onChange={handleCategoryChange}
-        label="Kategoria"
-        inputProps={{
-          name: "category",
-          id: "categorySelect",
-        }}
-      >
-        {productsCategories.map((productsCategory) => {
-          return (
-            <option key={productsCategory} value={productsCategory}>
-              {productsCategory}
-            </option>
-          );
-        })}
-
-        {/* <option value={"all"}>Wszystkie</option>
-        <option value={"cream"}>Kremy</option>
-        <option value={"serum"}>Sera</option>
-        <option value={"oil"}>Olejki</option>
-        <option value={"soap"}>Mydła</option> */}
-      </Select>
-    </FormControl>
+    <>
+      <FormControl className={classes.margin}>
+        <InputLabel id="categorySelect">Category</InputLabel>
+        <Select
+          labelId="categorySelect"
+          id="categorySelect"
+          value={category}
+          onChange={handleCategoryChange}
+          input={<BootstrapInput />}
+          defaultValue="all"
+        >
+          {productsCategories.map((productsCategory) => {
+            return (
+              <MenuItem value={productsCategory} className={classes.menu}>
+                {productsCategory}
+              </MenuItem>
+            );
+          })}
+        </Select>
+      </FormControl>
+    </>
   );
 };
 
