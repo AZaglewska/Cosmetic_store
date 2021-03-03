@@ -3,4 +3,5 @@ export const routes = {
   about: "/about",
   products: "/products",
   contact: "/contact",
+  singleProduct: "/product/:productName",
 };
