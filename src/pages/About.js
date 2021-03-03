@@ -1,38 +1,41 @@
-import React, { useContext } from "react";
-import CosmeticStoreContext from "../context";
-import styled from "styled-components";
-import Button from "../components/atoms/Button";
-import Background from "../assets/navbarImages/13.jpg";
-
-const StyledWrapper = styled.div`
-  background-image: url(${(props) => props.bg});
-  height: 300px;
-  width: 100%;
-  background-repeat: no-repeat;
-  background-position: 80% 35%;
-  background-size: cover;
-  color: ${({ theme }) => theme.colors.lightGrey};
-  margin-top: -100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 35px;
-`;
+import React from "react";
+import navbarImage from "../assets/navbarImages/navbarImage1.jpg";
+import DiscountedProductsCarousel from "../components/DiscountedProductsCarousel/DiscountedProductsCarousel";
+import GoogleMap from "../components/GoogleMap";
+import offerIcon from "../assets/icons/upselling.svg";
+import { routes } from "../routes/index";
+import {
+  StyledWrapper,
+  AboutWrapper,
+  AboutContent,
+  AboutOfferLink,
+  AboutOfferIcon,
+} from "./stylesPages/AboutStyles";
 
 const About = () => {
-  const context = useContext(CosmeticStoreContext);
-
-  const { color, changeColor } = context;
-
   return (
     <>
-      <StyledWrapper bg={Background}></StyledWrapper>
+      <StyledWrapper navbarImage={navbarImage}></StyledWrapper>
+      <AboutWrapper>
+        <AboutContent>
+          <h2>About Us</h2>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi
+            voluptate dolorem at tenetur accusantium voluptatem reprehenderit
+            eaque, sunt laudantium voluptatum, maxime unde expedita tempore sed
+            in eos dignissimos reiciendis consectetur magni aut iusto totam.
+            Omnis, eligendi, sapiente optio hic dicta iure saepe magni id
+            consectetur vero labore nobis ad illo?
+          </p>
+          <AboutOfferLink to={routes.products}>
+            <AboutOfferIcon src={offerIcon} />
+            Check Our Offer
+          </AboutOfferLink>
+        </AboutContent>
+        <GoogleMap />
+      </AboutWrapper>
 
-      {/* <Button>first</Button>
-      <Button onClickFn={() => console.log("click")} type="second">
-        second
-      </Button>
-      <Button type="thrid">thrid</Button> */}
+      <DiscountedProductsCarousel />
     </>
   );
 };
