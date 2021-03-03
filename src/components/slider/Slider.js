@@ -1,21 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import AwesomeSlider from "react-awesome-slider";
 import withAutoplay from "react-awesome-slider/dist/autoplay";
 import "react-awesome-slider/dist/styles.css";
-import image1 from "../../assets/sliderImages/sliderimage33.jpg";
-import image2 from "../../assets/sliderImages/sliderImage2.jpg";
+import image1 from "../../assets/sliderImages/sliderimage1.jpg";
+import image2 from "../../assets/sliderImages/sliderimage2.jpg";
 import iconRight from "../../assets/icons/next.svg";
 import iconLeft from "../../assets/icons/left-arrow.svg";
 import styles from "./Slider.css";
+import CosmeticStoreContext from "../../context";
 
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 
 const StyledSlider = styled(AutoplaySlider)`
   width: 100%;
   margin-top: -100px;
-
   overflow: hidden;
+
+  z-index: ${({ isPopperOpen }) => (isPopperOpen ? "-1" : "1")};
+
   --slider-height-percentage: 45%;
   --slider-transition-duration: 770ms;
   --organic-arrow-thickness: 5px;
@@ -33,19 +36,28 @@ const StyledSlider = styled(AutoplaySlider)`
 
 const StyledSliderContent = styled.div`
   z-index: 999;
-  /* position: relative; */
 `;
 const StyledIcon = styled.img`
   width: 40px;
+  @media (max-width: 903px) {
+    width: 30px;
+  }
+
+  @media (max-width: 682px) {
+    width: 25px;
+  }
 `;
 
 const Slider = () => {
+  const context = useContext(CosmeticStoreContext);
+  const { showProductsPoper } = context;
+
   return (
     <>
       <StyledSliderContent>
         <StyledSlider
-          play={false}
-          cancelOnInteraction={false} // should stop playing on user interaction
+          play={true}
+          cancelOnInteraction={false}
           interval={6000}
           mobileTouch={true}
           organicArrows={false}
@@ -53,9 +65,9 @@ const Slider = () => {
           cssModule={styles}
           buttonContentRight={<StyledIcon src={iconRight} alt="" />}
           buttonContentLeft={<StyledIcon src={iconLeft} alt="" />}
+          isPopperOpen={showProductsPoper}
         >
           <div className="slider-container" data-src={image1}>
-            {/* <img className="slider-image" alt="SliderImage" src={image1} /> */}
             <div className="slider-content">
               <h1 className="slider-title">Eve cosmetics</h1>
               <h2 className="slider-text">
@@ -66,10 +78,9 @@ const Slider = () => {
           </div>
 
           <div className="slider-container" data-src={image2}>
-            {/* <img className="slider-image" alt="SliderImage" src={image2} /> */}
-            <div className="slider-content-second">
-              <h1 className="slider-title-second">Pure nature for your skin</h1>
-              <h2 className="slider-text-second">
+            <div className="slider-content">
+              <h1 className="slider-title">Pure nature</h1>
+              <h2 className="slider-text">
                 Lorem ipsum dolor sit amet consectetur
               </h2>
               <button className="slider-button"> Shop Now </button>
