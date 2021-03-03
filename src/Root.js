@@ -7,56 +7,241 @@ import Contact from "./pages/Contact";
 import Products from "./pages/Products";
 import { routes } from "./routes";
 import MainTemplate from "./templates/MainTemplate";
-import { localData } from "./localData";
 import CosmeticStoreContext from "./context";
+import { client } from "./contentful/contentfulConfig";
+import SingleProduct from "./pages/SingleProduct";
+import {
+  getCartFromLocalStorage,
+  getCartQuantityFromLocalStorage,
+} from "./utils/localStorageGetters";
 
 const Root = () => {
-  const [initialProductState, setInitialProductsState] = useState([
-    ...localData,
-  ]);
-  const [products, setProducts] = useState([...localData]);
+  const [initialProductState, setInitialProductsState] = useState([]);
+  const [products, setProducts] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [cart, setCart] = useState([]);
-  const [cartQuantity, setCartQuantity] = useState(0);
+  const [cart, setCart] = useState(getCartFromLocalStorage());
+  const [cartQuantity, setCartQuantity] = useState(
+    getCartQuantityFromLocalStorage()
+  );
   const [cartTotal, setCartTotal] = useState(0);
   const [isSearchBarOpen, setSearchBarOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [alertContent, setAlertContent] = useState("");
   const [discountProducts, setDiscountProducts] = useState([]);
+  const [color, changeColor] = useState("");
+  const [isHamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
 
   //states for filters:
   const [category, setCategory] = useState("all");
   const [price, setPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
   const [searchProductName, setSearchProductName] = useState("");
+  const [freeDelivery, setFreeDelivery] = useState(false);
 
-  const closeAlert = () => {
-    setIsAlertOpen(false);
+  const [showProductsPoper, setShowProductsPoper] = useState(false);
+  const [searchProductNavInput, setSearchProductNavInput] = useState("");
+  const [poperAnchor, setPoperAnchor] = useState(null);
+  const [popperProducts, setPopperProducts] = useState([]);
+
+  const setCartToLocalStorage = () => {
+    localStorage.setItem("cart", JSON.stringify(cart));
   };
 
-  const getMaxPrice = () => {
-    const productsPrices = initialProductState.map(
+  useEffect(() => {
+    setCartToLocalStorage();
+  }, [cart]);
+
+  const setCartQuantityToLocalStorage = () => {
+    localStorage.setItem("cartQuantity", JSON.stringify(cartQuantity));
+  };
+
+  useEffect(() => {
+    setCartQuantityToLocalStorage();
+  }, [cartQuantity]);
+
+  const setContentfulData = (data) => {
+    const contentfulData = data.map((item) => {
+      const productId = item.sys.id;
+
+      const product = {
+        productId,
+        ...item.fields,
+        productImage: item.fields.productImage.fields.file.url,
+      };
+
+      return product;
+    });
+
+    console.log(contentfulData);
+    setInitialProductsState([...contentfulData]);
+    setProducts([...contentfulData]);
+
+    const productsPrices = contentfulData.map(
       (product) => product.productPrice
     );
 
     const tempMaxPrice = Math.max(...productsPrices);
 
-    console.log(productsPrices);
-    console.log(tempMaxPrice);
     setPrice(tempMaxPrice);
     setMaxPrice(tempMaxPrice);
+
+    getRandomProduct(contentfulData);
+  };
+
+  const getContentfulData = () => {
+    client
+      .getEntries({
+        content_type: "products",
+      })
+      .then((res) => {
+        console.log(res);
+        setContentfulData(res.items);
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
-    getMaxPrice();
+    getContentfulData();
   }, []);
 
-  const handlePriceChange = (e) => {
-    setPrice(parseInt(e.target.value));
+  const toggleHamburgerMenuOpen = () => {
+    setHamburgerMenuOpen(!isHamburgerMenuOpen);
+  };
+
+  const closeHamburgerMenu = () => {
+    setHamburgerMenuOpen(false);
+  };
+
+  const handleSearchProductNavInputChange = (e) => {
+    setSearchProductNavInput(e.target.value);
+    setPoperAnchor(e.target);
+  };
+
+  const closeProductsPopper = () => {
+    setShowProductsPoper(false);
+    setSearchProductNavInput("");
+  };
+
+  useEffect(() => {
+    if (searchProductNavInput.length !== 0) {
+      setShowProductsPoper(true);
+      filterProductsByNameInPopper();
+    } else {
+      setShowProductsPoper(false);
+      setPopperProducts([]);
+    }
+  }, [searchProductNavInput]);
+
+  const filterProductsByNameInPopper = () => {
+    if (searchProductNavInput.length > 0) {
+      const filteredProducts = initialProductState.filter((product) => {
+        const lowerCaseSearchName = searchProductNavInput.toLowerCase();
+        const loweCaseProductName = product.productName.toLowerCase();
+        return (
+          loweCaseProductName.slice(0, searchProductNavInput.length) ===
+          lowerCaseSearchName
+        );
+      });
+
+      setPopperProducts([...filteredProducts]);
+    }
+  };
+
+  const getRandomProduct = (productsFromContentful) => {
+    const productsArray = [...productsFromContentful];
+    const keys = Object.keys(productsArray);
+
+    let tempRandomProductsIndexes = [];
+
+    for (let i = 0; i < 3; i++) {
+      const randomProductIndex = parseInt(
+        keys[Math.floor(Math.random() * keys.length)]
+      );
+      tempRandomProductsIndexes = [
+        ...new Set([...tempRandomProductsIndexes, randomProductIndex]),
+      ];
+    }
+
+    console.log(tempRandomProductsIndexes);
+
+    const mapedProducts = productsArray.map((product, index) => {
+      if (tempRandomProductsIndexes.includes(index)) {
+        const discountPrice =
+          product.productPrice - (product.productPrice * 50) / 100;
+        const newProductId = Math.floor(Math.random() * 10000);
+        return {
+          ...product,
+          oldPrice: product.productPrice,
+          productPrice: discountPrice,
+          productId: newProductId,
+        };
+      }
+    });
+
+    console.log(mapedProducts);
+
+    const formatedProducts = mapedProducts.filter(
+      (product) => product !== undefined
+    );
+
+    console.log(formatedProducts);
+
+    // console.log(randomProduct);
+    // const randomElement = productsArray[randomProduct];
+
+    // console.log(randomElement.productName);
+    // setDiscountProducts(randomElement);
+
+    setDiscountProducts([...formatedProducts]);
+  };
+
+  // useEffect(() => {
+  //   getRandomProduct();
+  // }, []);
+
+  const addDiscountedProduct = (discountProductId) => {
+    const findDiscountedProduct = discountProducts.find(
+      (discountProduct) => discountProduct.productId === discountProductId
+    );
+
+    setCart([...new Set([...cart, findDiscountedProduct])]);
+  };
+
+  const closeAlert = () => {
+    setIsAlertOpen(false);
+  };
+
+  // const getMaxPrice = () => {
+  //   const productsPrices = initialProductState.map(
+  //     (product) => product.productPrice
+  //   );
+
+  //   const tempMaxPrice = Math.max(...productsPrices);
+
+  //   // console.log(productsPrices);
+  //   // console.log(tempMaxPrice);
+  //   setPrice(tempMaxPrice);
+  //   setMaxPrice(tempMaxPrice);
+  // };
+
+  // useEffect(() => {
+  //   getMaxPrice();
+  // }, []);
+
+  // const handlePriceChange = (e) => {
+  //   setPrice(parseInt(e.target.value));
+  // };
+
+  const handlePriceChange = (event, newValue) => {
+    setPrice(parseInt(newValue));
   };
 
   const handleSearchNameChange = (e) => {
     setSearchProductName(e.target.value);
+  };
+
+  const handleFreeDeliveryChange = (e) => {
+    setFreeDelivery(e.target.checked);
   };
 
   const filterProducts = () => {
@@ -72,11 +257,25 @@ const Root = () => {
       (product) => product.productPrice <= price
     );
 
+    // tempProducts = tempProducts.filter((product) => {
+    //   return product.productPrice <= price;
+    // });
+
     if (searchProductName.length > 0) {
       tempProducts = tempProducts.filter((product) => {
         const lowerCaseSearchName = searchProductName.toLowerCase();
         const loweCaseProductName = product.productName.toLowerCase();
+        return (
+          loweCaseProductName.slice(0, searchProductName.length) ===
+          lowerCaseSearchName
+        );
       });
+    }
+
+    if (freeDelivery) {
+      tempProducts = tempProducts.filter(
+        (product) => product.productPrice >= 199
+      );
     }
 
     setProducts([...tempProducts]);
@@ -84,7 +283,7 @@ const Root = () => {
 
   useEffect(() => {
     filterProducts();
-  }, [category, price]);
+  }, [category, price, searchProductName, freeDelivery]);
 
   const showAndCloseAlertAfterTimeWithContent = (time, content) => {
     setIsAlertOpen(true);
@@ -194,7 +393,9 @@ const Root = () => {
   };
 
   const handleSearchBarClose = (e) => {
-    setSearchBarOpen(false);
+    setTimeout(() => {
+      setSearchBarOpen(false);
+    }, 250);
   };
   return (
     <>
@@ -231,6 +432,21 @@ const Root = () => {
           handlePriceChange,
           searchProductName,
           handleSearchNameChange,
+          handleFreeDeliveryChange,
+          discountProducts,
+          freeDelivery,
+          color,
+          changeColor,
+          handleSearchProductNavInputChange,
+          showProductsPoper,
+          poperAnchor,
+          searchProductNavInput,
+          popperProducts,
+          closeProductsPopper,
+          addDiscountedProduct,
+          isHamburgerMenuOpen,
+          toggleHamburgerMenuOpen,
+          closeHamburgerMenu,
         }}
       >
         <BrowserRouter>
@@ -240,6 +456,7 @@ const Root = () => {
               <Route path={routes.about} component={About} />
               <Route path={routes.products} component={Products} />
               <Route path={routes.contact} component={Contact} />
+              <Route path={routes.singleProduct} component={SingleProduct} />
             </Switch>
           </MainTemplate>
         </BrowserRouter>
@@ -249,3 +466,29 @@ const Root = () => {
 };
 
 export default Root;
+
+// const [products, setProducts] = useState([]);
+
+// const getProducts = () => {
+//   // pobieranie z bazy
+//   //produkty z bazy
+//   const productsFormBase;
+
+//   setProducts(productsFormBase);
+
+//  //dostanie max ceny z productsFormBase z bazy
+//  const maxPrice;
+
+// };
+// useEffect(() => {
+//   getProducts();
+// }, []);
+
+// const getMaxPriceOfProducts = () => {
+//   //dostanie max ceny z products ze stanu
+//   const maxPrice;
+// };
+
+// useEffect(() => {
+//   getMaxPriceOfProducts();
+// }, []);
