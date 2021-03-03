@@ -186,18 +186,8 @@ const Root = () => {
 
     console.log(formatedProducts);
 
-    // console.log(randomProduct);
-    // const randomElement = productsArray[randomProduct];
-
-    // console.log(randomElement.productName);
-    // setDiscountProducts(randomElement);
-
     setDiscountProducts([...formatedProducts]);
   };
-
-  // useEffect(() => {
-  //   getRandomProduct();
-  // }, []);
 
   const addDiscountedProduct = (discountProductId) => {
     const findDiscountedProduct = discountProducts.find(
@@ -210,27 +200,6 @@ const Root = () => {
   const closeAlert = () => {
     setIsAlertOpen(false);
   };
-
-  // const getMaxPrice = () => {
-  //   const productsPrices = initialProductState.map(
-  //     (product) => product.productPrice
-  //   );
-
-  //   const tempMaxPrice = Math.max(...productsPrices);
-
-  //   // console.log(productsPrices);
-  //   // console.log(tempMaxPrice);
-  //   setPrice(tempMaxPrice);
-  //   setMaxPrice(tempMaxPrice);
-  // };
-
-  // useEffect(() => {
-  //   getMaxPrice();
-  // }, []);
-
-  // const handlePriceChange = (e) => {
-  //   setPrice(parseInt(e.target.value));
-  // };
 
   const handlePriceChange = (event, newValue) => {
     setPrice(parseInt(newValue));
@@ -256,10 +225,6 @@ const Root = () => {
     tempProducts = tempProducts.filter(
       (product) => product.productPrice <= price
     );
-
-    // tempProducts = tempProducts.filter((product) => {
-    //   return product.productPrice <= price;
-    // });
 
     if (searchProductName.length > 0) {
       tempProducts = tempProducts.filter((product) => {
@@ -466,29 +431,3 @@ const Root = () => {
 };
 
 export default Root;
-
-// const [products, setProducts] = useState([]);
-
-// const getProducts = () => {
-//   // pobieranie z bazy
-//   //produkty z bazy
-//   const productsFormBase;
-
-//   setProducts(productsFormBase);
-
-//  //dostanie max ceny z productsFormBase z bazy
-//  const maxPrice;
-
-// };
-// useEffect(() => {
-//   getProducts();
-// }, []);
-
-// const getMaxPriceOfProducts = () => {
-//   //dostanie max ceny z products ze stanu
-//   const maxPrice;
-// };
-
-// useEffect(() => {
-//   getMaxPriceOfProducts();
-// }, []);
