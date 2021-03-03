@@ -143,10 +143,7 @@ const Contact = () => {
                     };
                     emailjs
                       .send(
-                        // "service_aqikqs1",
-                        // "template_a4jkl4n",
                         valuesToSend,
-                        // "user_McqZXvfPswihAT2SeiePt"
                         process.env.REACT_APP_EMAILJS_SERVICE,
                         process.env.REACT_APP_EMAILJS_TEMPLATE,
                         process.env.REACT_APP_EMAILJS_USER
