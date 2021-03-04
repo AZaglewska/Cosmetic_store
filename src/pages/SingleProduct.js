@@ -42,7 +42,7 @@ const SingleProduct = (props) => {
         <SingleProductContent>
           <h2>{productName}</h2>
           <div>
-            <img src={priceIcon} />
+            <img src={priceIcon} alt={productName} />
             <h3>{productPrice}$</h3>
           </div>
 
