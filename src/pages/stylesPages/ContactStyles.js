@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { makeStyles } from "@material-ui/core/styles";
 
 export const StyledWrapper = styled.div`
   background-image: url(${(props) => props.navbarImage});
@@ -84,6 +85,11 @@ export const Textarea = styled.textarea`
   resize: none;
   width: 100%;
   height: 100px;
+  outline: none;
+  transition: 1s ease;
+  &:focus {
+    border: 3px solid ${({ theme }) => theme.colors.pink};
+  }
 `;
 
 export const ErrorWrapper = styled.div`
@@ -95,6 +101,31 @@ export const ErrorWrapper = styled.div`
 
 export const ButtonWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  margin: 30px 0;
+  align-items: center;
+  margin: 20px 0;
 `;
+
+export const SuccessText = styled.p`
+  color: green;
+  border: 1px dotted green;
+  text-align: center;
+  padding: 15px 10px;
+  margin-top: 15px;
+`;
+
+//material styles
+
+export const useStyles = makeStyles((theme) => ({
+  root: {
+    "& .MuiTextField-root": {
+      margin: theme.spacing(1),
+      width: "90%",
+    },
+
+    spinner: {
+      Background: "red",
+    },
+  },
+}));
