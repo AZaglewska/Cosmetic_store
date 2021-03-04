@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import emailjs from "emailjs-com";
 import navbarImage from "../assets/navbarImages/navbarImage4.jpg";
@@ -7,11 +7,7 @@ import formImage from "../assets/contactImage/contactImage.jpg";
 import Button from "../components/atoms/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import TextField from "@material-ui/core/TextField";
-import {
-  ThemeProvider,
-  withStyles,
-  makeStyles,
-} from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import {
   StyledWrapper,
   ContactWrapper,
@@ -26,26 +22,14 @@ import {
   Textarea,
   ErrorWrapper,
   ButtonWrapper,
+  SuccessText,
+  useStyles,
 } from "./stylesPages/ContactStyles";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& .MuiTextField-root": {
-      margin: theme.spacing(1),
-      width: "90%",
-    },
-
-    spinner: {
-      Background: "red",
-    },
-  },
-}));
-
 const Contact = () => {
-  const [successAlert, setSuccessAlert] = useState();
+  const [successAlert, setSuccessAlert] = useState("");
   const [loadingAlert, setLoadingAlert] = useState(false);
-  const [messageValue, setMessageValue] = useState("");
-  const [messageError, setMessageError] = useState("");
+
   const classes = useStyles();
 
   const CssTextField = withStyles({
@@ -86,10 +70,6 @@ const Contact = () => {
     },
   })(TextField);
 
-  const handleMessageValueChange = (e) => {
-    setMessageValue(e.target.value);
-  };
-
   const ValidationSchema = Yup.object().shape({
     name: Yup.string()
       .required("The first name cannot be empty")
@@ -112,7 +92,7 @@ const Contact = () => {
   });
 
   return (
-    <ThemeProvider>
+    <>
       <StyledWrapper navbarImage={navbarImage}></StyledWrapper>
       <ContactWrapper>
         <ContactContentWrapper>
@@ -132,39 +112,30 @@ const Contact = () => {
                   message: "",
                 }}
                 validationSchema={ValidationSchema}
-                onSubmit={(values, { setSubmitting, resetForm }, e) => {
-                  if (messageValue.length >= 10) {
-                    setLoadingAlert(true);
-                    setMessageError("");
+                onSubmit={(values, { resetForm }, e) => {
+                  setLoadingAlert(true);
 
-                    const valuesToSend = {
-                      ...values,
-                      message: messageValue,
-                    };
-                    emailjs
-                      .send(
-                        valuesToSend,
-                        process.env.REACT_APP_EMAILJS_SERVICE,
-                        process.env.REACT_APP_EMAILJS_TEMPLATE,
-                        process.env.REACT_APP_EMAILJS_USER
-                      )
-                      .then(
-                        (result) => {
-                          console.log(result.text);
-                          setSuccessAlert("Success");
-                          setLoadingAlert(false);
-                          resetForm();
-                          setMessageValue("");
-                        },
-                        (error) => {
-                          console.log(error.text);
-                        }
-                      );
-                  } else {
-                    setMessageError(
-                      "Message cannot be empty and must have atleast 10 characters"
-                    );
-                  }
+                  emailjs
+                    .send(
+                      process.env.REACT_APP_EMAILJS_SERVICE,
+                      process.env.REACT_APP_EMAILJS_TEMPLATE,
+                      values,
+                      process.env.REACT_APP_EMAILJS_USER
+                    )
+                    .then((result) => {
+                      console.log(result.text);
+                      setSuccessAlert("Success");
+                      setLoadingAlert(false);
+                      resetForm();
+                    })
+                    .then(() => {
+                      setTimeout(() => {
+                        setSuccessAlert("");
+                      }, 4000);
+                    })
+                    .catch((error) => {
+                      console.log(error.text);
+                    });
                 }}
               >
                 {({
@@ -173,7 +144,6 @@ const Contact = () => {
                   touched,
                   handleChange,
                   handleBlur,
-                  handleSubmit,
                   isSubmitting,
                 }) => {
                   return (
@@ -275,17 +245,20 @@ const Contact = () => {
                           styleType="pinkCartButton"
                           buttonType="submit"
                           disabled={isSubmitting}
-                          form
+                          isForm
                         >
                           {loadingAlert ? (
-                            <CircularProgress className={classes.spinner} />
+                            <CircularProgress
+                              className={classes.spinner}
+                              color="secondary"
+                            />
                           ) : (
                             "Send"
                           )}
                         </Button>
 
                         {successAlert === "Success" ? (
-                          <p>The message was sent</p>
+                          <SuccessText>The message was sent</SuccessText>
                         ) : null}
                       </ButtonWrapper>
                     </Form>
@@ -296,7 +269,7 @@ const Contact = () => {
           </ContactForm>
         </ContactContentWrapper>
       </ContactWrapper>
-    </ThemeProvider>
+    </>
   );
 };
 
