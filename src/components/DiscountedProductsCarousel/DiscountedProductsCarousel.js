@@ -68,7 +68,7 @@ const DiscountedProductsCarousel = ({ deviceType }) => {
             oldPrice,
           } = discountProduct;
           return (
-            <CarouselWrapper>
+            <CarouselWrapper key={productId}>
               <CarouselBox>
                 <CarouselImage src={productImage} />
                 <h3>{productName}</h3>
