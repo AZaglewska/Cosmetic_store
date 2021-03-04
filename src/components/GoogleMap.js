@@ -2,6 +2,16 @@ import React from "react";
 import GoogleMapReact from "google-map-react";
 import styled from "styled-components";
 
+const StyledMapWrapper = styled.div`
+  height: 60vh;
+  width: 60vw;
+  margin: auto;
+
+  @media (max-width: 700px) {
+    width: 83vw;
+  }
+`;
+
 const StyledMapMarker = styled.div`
   color: white;
   background-color: crimson;
@@ -31,19 +41,13 @@ const GoogleMap = () => {
   };
 
   return (
-    <div
-      style={{
-        height: "60vh",
-        width: "60vw",
-        margin: "auto",
-      }}
-    >
+    <StyledMapWrapper>
       <GoogleMapReact defaultCenter={cords.center} defaultZoom={cords.zoom}>
         <StyledMapMarker lat={59.955413} lng={30.337844}>
           <StyledMapMarkerText>We are here</StyledMapMarkerText>
         </StyledMapMarker>
       </GoogleMapReact>
-    </div>
+    </StyledMapWrapper>
   );
 };
 
