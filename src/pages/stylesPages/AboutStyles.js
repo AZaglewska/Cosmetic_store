@@ -71,6 +71,10 @@ export const AboutOfferLink = styled(Link)`
   font-weight: 500;
   font-size: 30px;
   margin-bottom: 30px;
+
+  @media (max-width: 349px) {
+    font-size: 20px;
+  }
 `;
 
 export const AboutOfferIcon = styled.img`
