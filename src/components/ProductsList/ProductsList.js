@@ -26,7 +26,7 @@ const ProductsList = () => {
   return (
     <>
       {products.length === 0 ? (
-        <h5>No results</h5>
+        <h3>No results</h3>
       ) : (
         <GridContainer>
           {products.map((product) => {
