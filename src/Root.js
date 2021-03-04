@@ -72,7 +72,6 @@ const Root = () => {
       return product;
     });
 
-    console.log(contentfulData);
     setInitialProductsState([...contentfulData]);
     setProducts([...contentfulData]);
 
@@ -94,7 +93,6 @@ const Root = () => {
         content_type: "products",
       })
       .then((res) => {
-        console.log(res);
         setContentfulData(res.items);
       })
       .catch((err) => console.log(err));
@@ -162,8 +160,6 @@ const Root = () => {
       ];
     }
 
-    console.log(tempRandomProductsIndexes);
-
     const mapedProducts = productsArray.map((product, index) => {
       if (tempRandomProductsIndexes.includes(index)) {
         const discountPrice =
@@ -175,16 +171,14 @@ const Root = () => {
           productPrice: discountPrice,
           productId: newProductId,
         };
+      } else {
+        return undefined;
       }
     });
-
-    console.log(mapedProducts);
 
     const formatedProducts = mapedProducts.filter(
       (product) => product !== undefined
     );
-
-    console.log(formatedProducts);
 
     setDiscountProducts([...formatedProducts]);
   };
@@ -337,8 +331,6 @@ const Root = () => {
     });
 
     setCart([...findFilteredProduct]);
-
-    console.log(findFilteredProduct);
   };
 
   const handleCartOpen = () => {
@@ -385,7 +377,6 @@ const Root = () => {
           handleSearchBarOpen,
           handleSearchBarClose,
           isSearchBarOpen,
-          cartQuantity,
           cart,
           cartTotal,
           price,
