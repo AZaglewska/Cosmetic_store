@@ -5,8 +5,9 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { Button } from "@material-ui/core";
-import { useStyles } from "./CartStyles";
+import { useStyles, CartTotal, CartTitle, CartLink } from "./CartStyles";
 import PayPalButton from "../PayPalButton";
+
 const Cart = () => {
   const context = useContext(CosmeticStoreContext);
 
@@ -15,10 +16,8 @@ const Cart = () => {
     handleCartClose,
     cart,
     deleteProductFromCart,
-    cartQuantity,
     addQuantity,
     minusQuantity,
-    updateCartHandler,
     increaseCartQuantity,
     decreaseCartQuantity,
     cartTotal,
@@ -42,7 +41,7 @@ const Cart = () => {
       >
         <Fade in={isCartOpen}>
           <div className={classes.paper}>
-            <h2>Twój koszyk</h2>
+            <CartTitle>Your Shopping Cart</CartTitle>
 
             <ul className={classes.ul}>
               {cart.map((cartElement) => {
@@ -50,7 +49,6 @@ const Cart = () => {
                   productName,
                   productId,
                   productPrice,
-                  productCategory,
                   productImage,
                   productQuantity,
                 } = cartElement;
@@ -58,57 +56,72 @@ const Cart = () => {
                 return (
                   <li key={productId} className={classes.list}>
                     <div className={classes.imgContainer}>
-                      <img
-                        className={classes.img}
-                        src={productImage}
-                        alt={productName}
-                      />
-                    </div>
-
-                    <div>
-                      <h4 className={classes.modalName}>{productName}</h4>
-                      <p className={classes.modalPrice}>{productPrice}$</p>
-                    </div>
-                    <div className={classes.cont}>
-                      <button
-                        className={classes.modalButton}
-                        onClick={() => {
-                          minusQuantity(productId);
-                          decreaseCartQuantity();
-                        }}
-                        disabled={productQuantity === 1 ? true : false}
-                      >
-                        -
-                      </button>
-                      <p className={classes.modalQuantity}>{productQuantity}</p>
-                      <button
-                        className={classes.modalButton}
-                        onClick={() => {
-                          addQuantity(productId);
-                          increaseCartQuantity();
+                      <CartLink
+                        to={{
+                          pathname: `/product/${productName.replace(
+                            /\s/g,
+                            ""
+                          )}`,
+                          state: {
+                            ...cartElement,
+                          },
                         }}
                       >
-                        +
-                      </button>
-                      <Button
-                        variant="contained"
-                        color="secondary"
-                        className={classes.button}
-                        startIcon={<DeleteIcon />}
-                        onClick={() => deleteProductFromCart(productId)}
-                      >
-                        Usuń
-                      </Button>
+                        <img
+                          className={classes.img}
+                          src={productImage}
+                          alt={productName}
+                        />
+                      </CartLink>
+                    </div>
+                    <div className={classes.modalContent}>
+                      <div>
+                        <h4 className={classes.modalName}>{productName}</h4>
+                        <p className={classes.modalPrice}>{productPrice}$</p>
+                      </div>
+                      <div className={classes.cont}>
+                        <button
+                          className={classes.modalButton}
+                          onClick={() => {
+                            minusQuantity(productId);
+                            decreaseCartQuantity();
+                          }}
+                          disabled={productQuantity === 1 ? true : false}
+                        >
+                          -
+                        </button>
+                        <p className={classes.modalQuantity}>
+                          {productQuantity}
+                        </p>
+                        <button
+                          className={classes.modalButton}
+                          onClick={() => {
+                            addQuantity(productId);
+                            increaseCartQuantity();
+                          }}
+                        >
+                          +
+                        </button>
+                        <Button
+                          variant="contained"
+                          color="secondary"
+                          className={classes.button}
+                          startIcon={<DeleteIcon />}
+                          onClick={() => deleteProductFromCart(productId)}
+                        >
+                          Delete
+                        </Button>
+                      </div>
                     </div>
                   </li>
                 );
               })}
             </ul>
             {cart.length === 0 ? (
-              <p>Koszyk jest pusty, dodaj rzeczy do koszyka</p>
+              <p>Your shopping cart is empty</p>
             ) : (
               <>
-                <p>Total: {cartTotal}$</p>
+                <CartTotal>Total: {cartTotal}$</CartTotal>
                 <PayPalButton />
               </>
             )}
