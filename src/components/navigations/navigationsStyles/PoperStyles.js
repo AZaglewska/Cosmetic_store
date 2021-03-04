@@ -1,4 +1,10 @@
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+
+export const PoperLink = styled(Link)``;
+
+//material styles
 
 export const useStyles = makeStyles((theme) => ({
   paper: {
@@ -6,10 +12,14 @@ export const useStyles = makeStyles((theme) => ({
     borderRadius: "5px",
     width: "70vw",
     overflow: "auto",
-    marginTop: "20px",
+    marginTop: "80px",
     color: "#9e9e9e",
-    "@media (max-width: 591px)": {
-      width: "90vw",
+
+    "@media (max-width: 650px)": {
+      width: "60vw",
+    },
+    "@media (max-width: 400px)": {
+      width: "80vw",
     },
   },
 
@@ -25,7 +35,10 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     borderBottom: "1px solid #ced4da",
-    cursor: "pointer",
+    textAlign: "center",
+    "@media (max-width: 650px)": {
+      flexDirection: "column",
+    },
 
     "&:hover": {
       backgroundColor: "rgba(219, 219, 219, 0.89)",
@@ -39,23 +52,30 @@ export const useStyles = makeStyles((theme) => ({
 
     "@media (max-width: 864px)": {
       flexDirection: "column",
-      width: "20%",
     },
   },
   poperProduct: {
-    marginBottom: "10px",
+    marginBottom: "15px",
+
+    "@media (max-width: 650px)": {
+      marginTop: "15px",
+    },
   },
 
   poperPrice: {
     fontSize: "20px",
     fontWeight: "500",
+    "@media (max-width: 650px)": {
+      marginBottom: "15px",
+    },
   },
 
   poperButton: {
     backgroundColor: "#ECCADA",
     marginRight: "15px",
-    "@media (max-width: 450px)": {
-      fontSize: "9px",
+
+    "@media (max-width: 650px)": {
+      margin: "0 0 20px",
     },
     "&:hover": {
       background: "#d0afbf",
@@ -64,13 +84,14 @@ export const useStyles = makeStyles((theme) => ({
   poperImage: {
     width: "130px",
     height: "100px",
-
-    "@media (max-width: 864px)": {
-      width: "100px",
+    opacity: ".8",
+    "&:hover": {
+      opacity: "1",
     },
 
-    "@media (max-width: 413px)": {
-      display: "none",
+    "@media (max-width: 650px)": {
+      width: "100%",
+      height: "200px",
     },
   },
 }));

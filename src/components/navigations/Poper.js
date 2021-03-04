@@ -4,7 +4,7 @@ import { Button } from "@material-ui/core";
 import LocalMallIcon from "@material-ui/icons/LocalMall";
 import Fade from "@material-ui/core/Fade";
 import CosmeticStoreContext from "../../context";
-import { useStyles } from "./navigationsStyles/PoperStyles";
+import { useStyles, PoperLink } from "./navigationsStyles/PoperStyles";
 
 const Poper = () => {
   const classes = useStyles();
@@ -38,11 +38,24 @@ const Poper = () => {
                     } = product;
                     return (
                       <li className={classes.poperList} key={productId}>
-                        <img
-                          className={classes.poperImage}
-                          src={productImage}
-                          alt={productName}
-                        />
+                        <PoperLink
+                          to={{
+                            pathname: `/product/${productName.replace(
+                              /\s/g,
+                              ""
+                            )}`,
+                            state: {
+                              ...product,
+                            },
+                          }}
+                        >
+                          <img
+                            className={classes.poperImage}
+                            src={productImage}
+                            alt={productName}
+                          />
+                        </PoperLink>
+
                         <div className={classes.poperContent}>
                           <h3 className={classes.poperProduct}>
                             {productName}
