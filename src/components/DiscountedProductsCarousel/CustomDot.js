@@ -8,11 +8,12 @@ const DotList = styled.li`
     border-radius: 50%;
     border: 1px solid ${({ theme }) => theme.colors.pink};
     margin: 2px;
+    outline: none;
+    cursor: pointer;
   }
 `;
 
-const CustomDot = ({ onClick, active, index, carouselState }) => {
-  const { currentSlide } = carouselState;
+const CustomDot = ({ onClick, active }) => {
   return (
     <DotList>
       <button
