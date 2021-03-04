@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const CarouselText = styled.p`
   font-size: 2rem;
@@ -74,12 +75,20 @@ export const CarouselProductPrice = styled.h4`
   text-decoration-line: ${(props) => (props.lineThrough ? "line-through" : "")};
 `;
 export const CarouselImage = styled.img`
-  width: 60%;
-  height: 200px;
-  margin: 40px 0 20px;
+  width: 80%;
+  margin: 20px 0 50px;
   border-radius: 5px;
+  opacity: 0.8;
 
-  @media (max-width: 413px) {
-    height: 100px;
+  &:hover {
+    opacity: 1;
   }
+  @media (max-width: 413px) {
+    margin: 20px 0 30px;
+  }
+`;
+
+export const CarouselLink = styled(Link)`
+  display: flex;
+  justify-content: center;
 `;

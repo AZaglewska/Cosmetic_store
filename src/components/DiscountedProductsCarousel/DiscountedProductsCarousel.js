@@ -13,6 +13,7 @@ import {
   CarouselBox,
   CarouselProductPrice,
   CarouselImage,
+  CarouselLink,
 } from "./DiscountedProductsCarouselStyles";
 
 const responsive = {
@@ -70,7 +71,17 @@ const DiscountedProductsCarousel = ({ deviceType }) => {
           return (
             <CarouselWrapper key={productId}>
               <CarouselBox>
-                <CarouselImage src={productImage} />
+                <CarouselLink
+                  to={{
+                    pathname: `/product/${productName.replace(/\s/g, "")}`,
+                    state: {
+                      ...discountProduct,
+                    },
+                  }}
+                >
+                  <CarouselImage src={productImage} alt={productName} />
+                </CarouselLink>
+
                 <h3>{productName}</h3>
                 <div>
                   <CarouselProductPrice>{productPrice}$</CarouselProductPrice>
