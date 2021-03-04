@@ -41,7 +41,7 @@ const StyledButton = styled.button`
     styleType === "pinkCartButton" &&
     css`
       background: ${(props) =>
-        props.form ? " #cea1b6" : "rgba(255, 255, 255, 0.25)"};
+        props.isForm ? " #cea1b6" : "rgba(255, 255, 255, 0.25)"};
       opacity: 0.8;
       box-shadow: 6px 7px 19px 2px #dbb7bc;
       border-radius: 5px;
@@ -158,7 +158,7 @@ const Button = ({
   searchIcon,
   closeIcon,
   buttonType,
-  form,
+  isForm,
   singleProduct,
 }) => {
   return (
@@ -169,7 +169,7 @@ const Button = ({
       searchIcon={searchIcon}
       closeIcon={closeIcon}
       type={buttonType ? buttonType : "button"}
-      form={form}
+      isForm={isForm}
       singleProduct={singleProduct}
     >
       {children}
