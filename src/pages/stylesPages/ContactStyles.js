@@ -93,7 +93,7 @@ export const Textarea = styled.textarea`
 `;
 
 export const ErrorWrapper = styled.div`
-  color: crimson;
+  color: #f44336;
   font-size: 13px;
   margin-top: 10px;
   text-align: center;
