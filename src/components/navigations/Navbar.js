@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import CosmeticStoreContext from "../../context";
 import { routes } from "../../routes";
 import bagIcon from "../../assets/icons/shopping-bags.svg";
