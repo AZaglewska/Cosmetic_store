@@ -9,6 +9,7 @@ import CosmeticStoreContext from "../context";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
+    position: "absolute",
     "& > * + *": {
       marginTop: theme.spacing(2),
     },
