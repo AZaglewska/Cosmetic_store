@@ -11,10 +11,6 @@ import {
 
 const CategoryFilter = () => {
   const classes = useStyles();
-  const [categories, setCategories] = React.useState("");
-  const handleChange = (event) => {
-    setCategories(event.target.value);
-  };
 
   const context = useContext(CosmeticStoreContext);
 
@@ -41,9 +37,13 @@ const CategoryFilter = () => {
           input={<BootstrapInput />}
           defaultValue="all"
         >
-          {productsCategories.map((productsCategory) => {
+          {productsCategories.map((productsCategory, index) => {
             return (
-              <MenuItem value={productsCategory} className={classes.menu}>
+              <MenuItem
+                value={productsCategory}
+                className={classes.menu}
+                key={index}
+              >
                 {productsCategory}
               </MenuItem>
             );

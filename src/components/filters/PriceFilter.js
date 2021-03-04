@@ -1,24 +1,8 @@
 import React, { useContext } from "react";
 import CosmeticStoreContext from "../../context";
-import styled from "styled-components";
-import { useStyles } from "./filtersStyles/PriceFilterStyles";
+import { useStyles, PriceWrapper } from "./filtersStyles/PriceFilterStyles";
 import Slider from "@material-ui/core/Slider";
 import Tooltip from "@material-ui/core/Tooltip";
-
-const PriceWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  @media (max-width: 990px) {
-    margin-top: 22px;
-  }
-  label {
-    color: ${({ theme }) => theme.colors.pink};
-    font-weight: 500;
-    text-align: center;
-    margin-bottom: 10px;
-  }
-`;
 
 const ValueLabelComponent = (props) => {
   const { children, open, value } = props;

@@ -37,9 +37,6 @@ export const BootstrapInput = withStyles((theme) => ({
       color: "#eccada",
       boxShadow: "0 0 0 0.2rem #eccada",
     },
-    "@media (max-width: 990px)": {
-      // width: "90%",
-    },
   },
 }))(InputBase);
 
