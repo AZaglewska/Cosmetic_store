@@ -8,10 +8,17 @@ import CosmeticStoreContext from "../context";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
-    position: "absolute",
+    width: "40vw",
+    position: "fixed",
+    left: "50%",
+    transform: "translate(-50%)",
+    zIndex: "10000",
     "& > * + *": {
       marginTop: theme.spacing(2),
+    },
+
+    "@media (max-width: 450px)": {
+      width: "80vw",
     },
   },
 }));
