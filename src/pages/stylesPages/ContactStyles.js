@@ -115,6 +115,14 @@ export const SuccessText = styled.p`
   margin-top: 15px;
 `;
 
+export const ErrorText = styled.p`
+  color: #f44336;
+  border: 1px dotted #f44336;
+  text-align: center;
+  padding: 15px 10px;
+  margin-top: 15px;
+`;
+
 //material styles
 
 export const useStyles = makeStyles((theme) => ({
@@ -122,10 +130,6 @@ export const useStyles = makeStyles((theme) => ({
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
       width: "90%",
-    },
-
-    spinner: {
-      Background: "red",
     },
   },
 }));

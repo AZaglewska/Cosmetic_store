@@ -23,12 +23,14 @@ import {
   ErrorWrapper,
   ButtonWrapper,
   SuccessText,
+  ErrorText,
   useStyles,
 } from "./stylesPages/ContactStyles";
 
 const Contact = () => {
   const [successAlert, setSuccessAlert] = useState("");
   const [loadingAlert, setLoadingAlert] = useState(false);
+  const [errorAlert, setErrorAlert] = useState("");
 
   const classes = useStyles();
 
@@ -135,6 +137,7 @@ const Contact = () => {
                     })
                     .catch((error) => {
                       console.log(error.text);
+                      setErrorAlert("Error");
                     });
                 }}
               >
@@ -248,10 +251,7 @@ const Contact = () => {
                           isForm
                         >
                           {loadingAlert ? (
-                            <CircularProgress
-                              className={classes.spinner}
-                              color="secondary"
-                            />
+                            <CircularProgress color="secondary" size={35} />
                           ) : (
                             "Send"
                           )}
@@ -259,6 +259,9 @@ const Contact = () => {
 
                         {successAlert === "Success" ? (
                           <SuccessText>The message was sent</SuccessText>
+                        ) : null}
+                        {errorAlert === "Error" ? (
+                          <ErrorText>This message wasn't sent</ErrorText>
                         ) : null}
                       </ButtonWrapper>
                     </Form>
