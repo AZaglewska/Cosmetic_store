@@ -3,21 +3,18 @@ import styled, { css } from "styled-components";
 import { zoomIn } from "../../GlobalStyles/animations";
 import { ButtonIconSvg } from "../../components/ProductsList/ProductListStyles";
 import { CartIconSvg } from "../../pages/stylesPages/SingleProductStyles";
+import { CarouselIconSvg } from "../../components/DiscountedProductsCarousel/DiscountedProductsCarouselStyles";
 
 const StyledButton = styled.button`
   color: white;
   padding: 10px 20px;
   outline: none;
-  cursor: pointer;
-
   ${({ styleType }) =>
     styleType === "pinkShopButton" &&
     css`
       border: 2px solid ${({ theme }) => theme.colors.pink};
       background-color: transparent;
       color: ${({ theme }) => theme.colors.pink};
-      outline: none;
-      cursor: pointer;
       padding: 20px 40px;
       font-size: 2rem;
       transition: ease 1s;
@@ -41,30 +38,33 @@ const StyledButton = styled.button`
     styleType === "pinkCartButton" &&
     css`
       background: ${(props) =>
-        props.isForm ? " #cea1b6" : "rgba(255, 255, 255, 0.25)"};
+        props.isForm ? "#ECCADA" : "rgba(255, 255, 255, 0.25)"};
+
       opacity: 0.8;
+      margin-bottom: ${(props) => (props.isForm ? "20px" : "none")};
       box-shadow: 6px 7px 19px 2px #dbb7bc;
       border-radius: 5px;
       outline: none;
       border: none;
-      padding: 20px 50px;
+      padding: ${(props) => (props.isForm ? "20px 80px" : "   20px 50px")};
       color: white;
       font-size: 20px;
+      height: ${(props) => (props.isForm ? "70px" : "none")};
       cursor: pointer;
       transition: fill 1s;
       &:active {
         transform: translateY(1px);
       }
-
+      &:hover ${CarouselIconSvg} {
+        fill: ${({ theme }) => theme.colors.lightYellow};
+      }
       &:hover {
         opacity: 1;
         color: ${({ theme }) => theme.colors.lightYellow};
       }
 
       @media (max-width: 413px) {
-        width: 80%;
-        height: 50px;
-        font-size: 12px;
+        padding: ${(props) => (props.isForm ? "20px 60px" : "15px 25px ")};
       }
     `}
 
@@ -82,7 +82,6 @@ const StyledButton = styled.button`
       color: white;
       font-size: 18px;
       margin: 20px 0;
-      cursor: pointer;
       transition: fill 1s;
 
       &:active {
