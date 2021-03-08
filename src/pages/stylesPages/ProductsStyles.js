@@ -24,5 +24,22 @@ export const ProductWrapper = styled.div`
   color: ${({ theme }) => theme.colors.smokeyGrey};
   h1 {
     margin-bottom: 40px;
+    color: ${({ theme }) => theme.colors.lightGrey};
   }
+`;
+
+export const StyledArrowUp = styled.button`
+  background-image: url(${({ icon }) => icon});
+  background-repeat: no-repeat;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  background-position: 50%;
+  background-size: 100%;
+  position: fixed;
+  z-index: 10000;
+  bottom: 4%;
+  right: 4%;
 `;
