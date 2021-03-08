@@ -25,7 +25,7 @@ export const GridContainer = styled.ul`
     transition: transform 0.9s ease;
     border-radius: 5px;
   }
-  @media (max-width: 340px) {
+  @media (max-width: 375px) {
     img {
       width: 270px;
     }
@@ -41,7 +41,7 @@ export const TransparentBox = styled.div`
   left: 0;
   transition: background-color 0.6s ease;
 
-  @media (max-width: 340px) {
+  @media (max-width: 375px) {
     width: 270px;
   }
 `;
@@ -80,7 +80,6 @@ export const ButtonBox = styled.div`
     font-size: 20px;
     border: none;
     padding: 20px 20px 20px 20px;
-    cursor: pointer;
     border-radius: 5px;
     outline: none;
     transition: ease 1s;
@@ -112,13 +111,10 @@ export const ImageBox = styled.div`
   position: relative;
   border-radius: 5px;
 
-  @media (max-width: 340px) {
+  @media (max-width: 375px) {
     width: 270px;
   }
 
-  &:hover {
-    cursor: pointer;
-  }
   &:hover img {
     transform: scale(1.1);
   }
