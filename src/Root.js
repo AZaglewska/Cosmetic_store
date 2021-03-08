@@ -187,6 +187,7 @@ const Root = () => {
     const findDiscountedProduct = discountProducts.find(
       (discountProduct) => discountProduct.productId === discountProductId
     );
+    showAndCloseAlertAfterTimeWithContent(3000, "Product added to cart!");
 
     setCart([...new Set([...cart, findDiscountedProduct])]);
   };
