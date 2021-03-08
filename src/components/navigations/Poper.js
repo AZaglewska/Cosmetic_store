@@ -28,7 +28,13 @@ const Poper = () => {
               {popperProducts.length === 0 ? (
                 <h5 className={classes.poperAlert}>No results</h5>
               ) : (
-                <ul>
+                <ul
+                  className={
+                    popperProducts.length === 1
+                      ? classes.singleProductPoperList
+                      : classes.poperList
+                  }
+                >
                   {popperProducts.map((product) => {
                     const {
                       productId,
@@ -37,7 +43,7 @@ const Poper = () => {
                       productImage,
                     } = product;
                     return (
-                      <li className={classes.poperList} key={productId}>
+                      <li className={classes.poperListElement} key={productId}>
                         <PoperLink
                           to={{
                             pathname: `/product/${productName.replace(
