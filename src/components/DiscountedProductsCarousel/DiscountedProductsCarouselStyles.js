@@ -5,7 +5,7 @@ export const CarouselText = styled.p`
   font-size: 2rem;
   display: flex;
   flex-direction: row;
-  margin-top: 40px;
+  margin-top: 30px;
   color: ${({ theme }) => theme.colors.pink};
 
   @media (max-width: 470px) {
@@ -62,21 +62,22 @@ export const CarouselBox = styled.div`
   border-radius: 5px;
 
   @media (max-width: 413px) {
-    width: 200px;
-    height: 20rem;
-    font-size: 17px;
+    width: 250px;
+    height: 380px;
+    /* font-size: 17px; */
   }
 `;
 
 export const CarouselProductPrice = styled.h4`
-  margin: 7px;
+  margin: 10px 0;
   font-weight: ${(props) => (props.lineThrough ? "300" : "600")};
   color: ${(props) => (props.lineThrough ? "#fffada" : "white")};
   text-decoration-line: ${(props) => (props.lineThrough ? "line-through" : "")};
 `;
 export const CarouselImage = styled.img`
-  width: 80%;
-  margin: 20px 0 50px;
+  width: 82%;
+  height: 190px;
+  margin: 20px 0 30px;
   border-radius: 5px;
   opacity: 0.8;
 
@@ -84,11 +85,20 @@ export const CarouselImage = styled.img`
     opacity: 1;
   }
   @media (max-width: 413px) {
-    margin: 20px 0 30px;
+    margin: 20px 0 20px;
+    height: 160px;
   }
 `;
 
 export const CarouselLink = styled(Link)`
   display: flex;
   justify-content: center;
+`;
+
+export const CarouselIconSvg = styled.svg`
+  width: 20px;
+  height: 20px;
+  fill: white;
+  transition: fill 1s;
+  margin-right: 10px;
 `;
