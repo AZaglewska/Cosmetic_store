@@ -4,8 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const PoperLink = styled(Link)``;
 
-//material styles
-
 export const useStyles = makeStyles((theme) => ({
   paper: {
     border: "1px solid #ADADAD",
@@ -30,6 +28,14 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   poperList: {
+    overflowY: "scroll",
+    height: "450px",
+  },
+  singleProductPoperList: {
+    height: "377px",
+  },
+
+  poperListElement: {
     display: "flex",
     backgroundColor: "rgba(230, 230, 230, 0.90)",
     justifyContent: "space-between",
