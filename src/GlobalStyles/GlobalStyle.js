@@ -13,6 +13,10 @@ box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
 
+ button {
+        cursor: pointer;
+    }
+
 `;
 
 export default GlobalStyle;

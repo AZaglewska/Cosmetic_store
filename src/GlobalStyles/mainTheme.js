@@ -5,7 +5,7 @@ export const mainTheme = {
     transparentGrey: "rgba(201, 201, 201, 0.45)",
     pink: "#ECCADA",
     darkPink: "#cea1b6",
-    lightYellow: "#fffada",
+    lightYellow: "#fff9db",
   },
 
   fontSize: {
