@@ -58,22 +58,24 @@ Browser will automatically open localhost:3000/
 
 ## Website Inspiration:
 
-https://svoje.pl/,
-https://www.everydayminerals.com/store/,
-https://triny.pl/,
-https://www.gog.com/
+- https://svoje.pl/,
+- https://www.everydayminerals.com/store/,
+- https://triny.pl/,
+- https://www.gog.com/
 
 ## Photos and Icons I used:
 
 All of the photos and Icons were taken from:
-https://www.pexels.com/pl-pl/,
-https://pixabay.com/pl/,
-https://www.flaticon.com/
-and they are free for commercial use.
+
+- https://www.pexels.com/pl-pl/,
+- https://pixabay.com/pl/,
+- https://www.flaticon.com/
+  and they are free for commercial use.
 
 Eve cosmetics logo were taken from:
-https://www.canva.com/pl_pl/
-and It's free for commercial use.
+
+- https://www.canva.com/pl_pl/
+  and It's free for commercial use.
 
 Footer Logo are created by me using Figma.
 
