@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# Cosmetic store website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview:
 
-## Available Scripts
+A cosmetic store website created in React.
+In this store users can add products to cart, delete products, increase/decrease products quantity in cart. It is also possible to filter products by categories or price, search by name or choose a free delivery option. Moreover, products from the shopping cart are stored in the local storage. This project uses React.js, React-Router-dom for navigation, Contentful CMS for dynamically updating the data and Styled-components/Material-UI for layout styles.
 
-In the project directory, you can run:
+### The Most significant features:
 
-### `npm start`
+- adding products to cart,
+- deleting products from cart,
+- increasing/decreasing products quantity,
+- current number of products in shopping bag and a total sum for purchases,
+- filtering products by category, price, name or choosing a free delivery option,
+- picking a discounted random products from the products carousel,
+- paying for purchases using PayPal sandbox,
+- leaving a message via contact form.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![gif](https://github.com/AZaglewska/Cosmetic_store/blob/main/src/assets/gif/Peek%202021-03-10%2010-50.gif)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Live demo
 
-### `npm test`
+Live demo:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Main Tech stack:
 
-### `npm run build`
+- React.js,
+- React-Router-dom,
+- React ContextAPI,
+- Styled-components,
+- Contentful CMS,
+- RWD,
+- EmailJS,
+- Formik, Yup,
+- Material-UI
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting started:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+These instructions will get you a copy of the project up and running on your local machine
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Installing:
 
-### `npm run eject`
+First of all clone the repository to your local machine.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Check if you have node and npm installed. Run this command in your terminal:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- node -v
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To confirm that you have npm installed you can run this command in your terminal:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- npm -v
 
-## Learn More
+If you checked your node and npm run a development server with:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- npm start
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Browser will automatically open localhost:3000/
 
-### Code Splitting
+## Website Inspiration:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+https://svoje.pl/,
+https://www.everydayminerals.com/store/,
+https://triny.pl/,
+https://www.gog.com/
 
-### Analyzing the Bundle Size
+## Photos and Icons I used:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+All of the photos and Icons were taken from:
+https://www.pexels.com/pl-pl/,
+https://pixabay.com/pl/,
+https://www.flaticon.com/
+and they are free for commercial use.
 
-### Making a Progressive Web App
+Eve cosmetics logo were taken from:
+https://www.canva.com/pl_pl/
+and It's free for commercial use.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Footer Logo are created by me using Figma.
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+if you have any problems to run the project, feel free to contact me by e-mail:
+web.annazaglewska@gmail.com
