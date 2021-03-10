@@ -4,6 +4,7 @@ import { zoomIn } from "../../GlobalStyles/animations";
 import { ButtonIconSvg } from "../../components/ProductsList/ProductListStyles";
 import { CartIconSvg } from "../../pages/stylesPages/SingleProductStyles";
 import { CarouselIconSvg } from "../../components/DiscountedProductsCarousel/DiscountedProductsCarouselStyles";
+import { ContactIconSvg } from "../../pages/stylesPages/ContactStyles";
 
 const StyledButton = styled.button`
   color: white;
@@ -39,14 +40,14 @@ const StyledButton = styled.button`
     css`
       background: ${(props) =>
         props.isForm ? "#ECCADA" : "rgba(255, 255, 255, 0.25)"};
-
       opacity: 0.8;
       margin-bottom: ${(props) => (props.isForm ? "20px" : "none")};
       box-shadow: 6px 7px 19px 2px #dbb7bc;
       border-radius: 5px;
       outline: none;
       border: none;
-      padding: ${(props) => (props.isForm ? "20px 80px" : "   20px 50px")};
+      padding: ${(props) => (props.isForm ? "none" : "20px 50px")};
+      width: ${(props) => (props.isForm ? "200px" : "none")};
       color: white;
       font-size: 20px;
       height: ${(props) => (props.isForm ? "70px" : "none")};
@@ -56,6 +57,10 @@ const StyledButton = styled.button`
         transform: translateY(1px);
       }
       &:hover ${CarouselIconSvg} {
+        fill: ${({ theme }) => theme.colors.lightYellow};
+      }
+
+      &:hover ${ContactIconSvg} {
         fill: ${({ theme }) => theme.colors.lightYellow};
       }
       &:hover {
