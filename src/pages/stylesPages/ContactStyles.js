@@ -25,7 +25,7 @@ export const ContactContentWrapper = styled.div`
   border-radius: 5px;
   display: flex;
   width: 90%;
-  @media (max-width: 768px) {
+  @media (max-width: 880px) {
     flex-direction: column;
   }
 `;
@@ -45,9 +45,12 @@ export const ContactImage = styled.div`
   h2 {
     margin-right: 20px;
     color: ${({ theme }) => theme.colors.lightYellow};
+    @media (max-width: 410px) {
+      text-align: center;
+    }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 880px) {
     height: 200px;
   }
 `;
@@ -69,14 +72,19 @@ export const FieldWrapper = styled.div`
   margin-bottom: 10px;
   width: 100%;
   justify-content: center;
+  align-items: center;
+
+  @media (max-width: 410px) {
+    flex-direction: column;
+  }
 `;
 
 export const FormContent = styled.div`
   margin: 10px;
-  width: 90%;
+  width: 100%;
 `;
 export const TextareaWrapper = styled.div`
-  width: 80%;
+  width: 90%;
 `;
 
 export const Textarea = styled.textarea`
@@ -121,6 +129,19 @@ export const ErrorText = styled.p`
   text-align: center;
   padding: 15px 10px;
   margin-top: 15px;
+`;
+
+export const ContactButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const ContactIconSvg = styled.svg`
+  width: 20px;
+  height: 20px;
+  fill: white;
+  transition: fill 1s;
+  margin-right: 10px;
 `;
 
 //material styles
