@@ -78,7 +78,7 @@ const StyledButton = styled.button`
     css`
       background: ${({ theme }) => theme.colors.pink};
       opacity: 0.8;
-      box-shadow: 6px 7px 19px 2px #dbb7bc;
+      box-shadow: -1px 7px 12px -3px #ceb7c1;
       border-radius: 5px;
       outline: none;
       border: none;
