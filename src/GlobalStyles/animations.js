@@ -14,11 +14,12 @@ export const zoomIn = keyframes`
 `;
 
 export const show = keyframes`
-  from {
+  0% {
     opacity: 0;
   }
-  to {
+  100% {
     opacity: 1;
     transform: translateY(0px);
   }
+  
 `;
