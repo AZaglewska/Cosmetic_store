@@ -1,42 +1,46 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import GlobalStyle from "./GlobalStyles/GlobalStyle";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import About from "./pages/About";
-import Home from "./pages/Home";
-import Contact from "./pages/Contact";
-import Products from "./pages/Products";
-import { routes } from "./routes";
 import MainTemplate from "./templates/MainTemplate";
 import CosmeticStoreContext from "./context";
 import { client } from "./contentful/contentfulConfig";
-import SingleProduct from "./pages/SingleProduct";
 import {
   getCartFromLocalStorage,
   getCartQuantityFromLocalStorage,
 } from "./utils/localStorageGetters";
+import Router from "./routing/Router";
+import ProductsContext from "./context/productsContext";
 
 const Root = () => {
-  const [initialProductState, setInitialProductsState] = useState([]);
-  const [products, setProducts] = useState([]);
+  const productsContext = useContext(ProductsContext);
+
+  const {
+    initialProductState,
+    setContentfulData,
+    filterProducts,
+    category,
+    price,
+    searchProductName,
+    freeDelivery,
+    discountProducts,
+    products,
+    handleCategoryChange,
+    maxPrice,
+    handlePriceChange,
+    handleSearchNameChange,
+    handleFreeDeliveryChange,
+  } = productsContext;
+
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cart, setCart] = useState(getCartFromLocalStorage());
   const [cartQuantity, setCartQuantity] = useState(
     getCartQuantityFromLocalStorage()
   );
   const [cartTotal, setCartTotal] = useState(0);
+
   const [isSearchBarOpen, setSearchBarOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [alertContent, setAlertContent] = useState("");
-  const [discountProducts, setDiscountProducts] = useState([]);
-  const [color, changeColor] = useState("");
   const [isHamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
-
-  //states for filters:
-  const [category, setCategory] = useState("all");
-  const [price, setPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(0);
-  const [searchProductName, setSearchProductName] = useState("");
-  const [freeDelivery, setFreeDelivery] = useState(false);
 
   const [showProductsPoper, setShowProductsPoper] = useState(false);
   const [searchProductNavInput, setSearchProductNavInput] = useState("");
@@ -46,46 +50,14 @@ const Root = () => {
   const setCartToLocalStorage = () => {
     localStorage.setItem("cart", JSON.stringify(cart));
   };
-
-  useEffect(() => {
-    setCartToLocalStorage();
-  }, [cart]);
-
   const setCartQuantityToLocalStorage = () => {
     localStorage.setItem("cartQuantity", JSON.stringify(cartQuantity));
   };
 
   useEffect(() => {
+    setCartToLocalStorage();
     setCartQuantityToLocalStorage();
-  }, [cartQuantity]);
-
-  const setContentfulData = (data) => {
-    const contentfulData = data.map((item) => {
-      const productId = item.sys.id;
-
-      const product = {
-        productId,
-        ...item.fields,
-        productImage: item.fields.productImage.fields.file.url,
-      };
-
-      return product;
-    });
-
-    setInitialProductsState([...contentfulData]);
-    setProducts([...contentfulData]);
-
-    const productsPrices = contentfulData.map(
-      (product) => product.productPrice
-    );
-
-    const tempMaxPrice = Math.max(...productsPrices);
-
-    setPrice(tempMaxPrice);
-    setMaxPrice(tempMaxPrice);
-
-    getRandomProduct(contentfulData);
-  };
+  }, [cart, cartQuantity]);
 
   const getContentfulData = () => {
     client
@@ -145,100 +117,8 @@ const Root = () => {
     }
   };
 
-  const getRandomProduct = (productsFromContentful) => {
-    const productsArray = [...productsFromContentful];
-    const keys = Object.keys(productsArray);
-
-    let tempRandomProductsIndexes = [];
-
-    for (let i = 0; i < 3; i++) {
-      const randomProductIndex = parseInt(
-        keys[Math.floor(Math.random() * keys.length)]
-      );
-      tempRandomProductsIndexes = [
-        ...new Set([...tempRandomProductsIndexes, randomProductIndex]),
-      ];
-    }
-
-    const mapedProducts = productsArray.map((product, index) => {
-      if (tempRandomProductsIndexes.includes(index)) {
-        const discountPrice =
-          product.productPrice - (product.productPrice * 50) / 100;
-        const newProductId = Math.floor(Math.random() * 10000);
-        return {
-          ...product,
-          oldPrice: product.productPrice,
-          productPrice: discountPrice,
-          productId: newProductId,
-        };
-      } else {
-        return undefined;
-      }
-    });
-
-    const formatedProducts = mapedProducts.filter(
-      (product) => product !== undefined
-    );
-
-    setDiscountProducts([...formatedProducts]);
-  };
-
-  const addDiscountedProduct = (discountProductId) => {
-    const findDiscountedProduct = discountProducts.find(
-      (discountProduct) => discountProduct.productId === discountProductId
-    );
-    showAndCloseAlertAfterTimeWithContent(3000, "Product added to cart!");
-
-    setCart([...new Set([...cart, findDiscountedProduct])]);
-  };
-
   const closeAlert = () => {
     setIsAlertOpen(false);
-  };
-
-  const handlePriceChange = (event, newValue) => {
-    setPrice(parseInt(newValue));
-  };
-
-  const handleSearchNameChange = (e) => {
-    setSearchProductName(e.target.value);
-  };
-
-  const handleFreeDeliveryChange = (e) => {
-    setFreeDelivery(e.target.checked);
-  };
-
-  const filterProducts = () => {
-    let tempProducts = [...initialProductState];
-
-    if (category !== "all") {
-      tempProducts = tempProducts.filter(
-        (product) => product.productCategory === category
-      );
-    }
-
-    tempProducts = tempProducts.filter(
-      (product) => product.productPrice <= price
-    );
-
-    if (searchProductName.length > 0) {
-      tempProducts = tempProducts.filter((product) => {
-        const lowerCaseSearchName = searchProductName.toLowerCase();
-        const loweCaseProductName = product.productName.toLowerCase();
-        return (
-          loweCaseProductName.slice(0, searchProductName.length) ===
-          lowerCaseSearchName
-        );
-      });
-    }
-
-    if (freeDelivery) {
-      tempProducts = tempProducts.filter(
-        (product) => product.productPrice >= 199
-      );
-    }
-
-    setProducts([...tempProducts]);
   };
 
   useEffect(() => {
@@ -291,6 +171,15 @@ const Root = () => {
     setCart([...mappedCart]);
   };
 
+  const addDiscountedProduct = (discountProductId) => {
+    const findDiscountedProduct = discountProducts.find(
+      (discountProduct) => discountProduct.productId === discountProductId
+    );
+    showAndCloseAlertAfterTimeWithContent(3000, "Product added to cart!");
+
+    setCart([...new Set([...cart, findDiscountedProduct])]);
+  };
+
   const minusQuantity = (exampleProductId) => {
     const mappedCart = cart.map((cartElement) => {
       if (cartElement.productId === exampleProductId) {
@@ -303,11 +192,23 @@ const Root = () => {
     setCart([...mappedCart]);
   };
   const addProductToCart = (exampleProductId) => {
-    const foundProduct = products.find(
+    const foundProduct = initialProductState.find(
       (product) => product.productId === exampleProductId
     );
 
-    setCart([...new Set([...cart, foundProduct])]);
+    let isProductAlreadyInCart;
+
+    cart.forEach((product) => {
+      if (product.productId === exampleProductId) {
+        isProductAlreadyInCart = true;
+      }
+    });
+
+    if (isProductAlreadyInCart) {
+      setCart([...new Set([...cart])]);
+    } else {
+      setCart([...new Set([...cart, foundProduct])]);
+    }
     showAndCloseAlertAfterTimeWithContent(3000, "Product added to cart!");
   };
 
@@ -342,10 +243,6 @@ const Root = () => {
     setIsCartOpen(false);
   };
 
-  const handleCategoryChange = (e) => {
-    setCategory(e.target.value);
-  };
-
   const handleSearchBarOpen = (e) => {
     setSearchBarOpen(true);
   };
@@ -360,9 +257,6 @@ const Root = () => {
       <GlobalStyle />
       <CosmeticStoreContext.Provider
         value={{
-          products,
-          category,
-          handleCategoryChange,
           isCartOpen,
           handleCartClose,
           handleCartOpen,
@@ -380,20 +274,10 @@ const Root = () => {
           isSearchBarOpen,
           cart,
           cartTotal,
-          price,
-          maxPrice,
           isAlertOpen,
           closeAlert,
           alertContent,
-          initialProductState,
-          handlePriceChange,
-          searchProductName,
-          handleSearchNameChange,
-          handleFreeDeliveryChange,
           discountProducts,
-          freeDelivery,
-          color,
-          changeColor,
           handleSearchProductNavInputChange,
           showProductsPoper,
           poperAnchor,
@@ -406,17 +290,9 @@ const Root = () => {
           closeHamburgerMenu,
         }}
       >
-        <BrowserRouter>
-          <MainTemplate>
-            <Switch>
-              <Route exact path={routes.home} component={Home} />
-              <Route path={routes.about} component={About} />
-              <Route path={routes.products} component={Products} />
-              <Route path={routes.contact} component={Contact} />
-              <Route path={routes.singleProduct} component={SingleProduct} />
-            </Switch>
-          </MainTemplate>
-        </BrowserRouter>
+        <MainTemplate>
+          <Router />
+        </MainTemplate>
       </CosmeticStoreContext.Provider>
     </>
   );
