@@ -24,7 +24,6 @@ const Navbar = () => {
     cartQuantity,
     handleSearchBarOpen,
     isSearchBarOpen,
-    changeColor,
     isHamburgerMenuOpen,
     toggleHamburgerMenuOpen,
     closeHamburgerMenu,
@@ -55,12 +54,7 @@ const Navbar = () => {
             <StyledImgContainer to={routes.home}> </StyledImgContainer>
             <LinkCont>
               <NavLink to={routes.home}>Home</NavLink>
-              <NavLink
-                to={routes.about}
-                onClick={() => changeColor("About us")}
-              >
-                About
-              </NavLink>
+              <NavLink to={routes.about}>About</NavLink>
               <NavLink to={routes.products}>Products</NavLink>
               <NavLink to={routes.contact}>Contact</NavLink>
             </LinkCont>
