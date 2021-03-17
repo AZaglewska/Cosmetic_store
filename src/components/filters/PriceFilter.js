@@ -3,6 +3,7 @@ import CosmeticStoreContext from "../../context";
 import { useStyles, PriceWrapper } from "./filtersStyles/PriceFilterStyles";
 import Slider from "@material-ui/core/Slider";
 import Tooltip from "@material-ui/core/Tooltip";
+import ProductsContext from "../../context/productsContext";
 
 const ValueLabelComponent = (props) => {
   const { children, open, value } = props;
@@ -22,7 +23,7 @@ const ValueLabelComponent = (props) => {
 const PriceFilter = () => {
   const classes = useStyles();
 
-  const context = useContext(CosmeticStoreContext);
+  const context = useContext(ProductsContext);
   const { price, maxPrice, handlePriceChange } = context;
   return (
     <PriceWrapper>

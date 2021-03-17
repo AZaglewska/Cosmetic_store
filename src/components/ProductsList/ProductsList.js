@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import CosmeticStoreContext from "../../context";
+import ProductsContext from "../../context/productsContext";
 import Button from "../atoms/Button";
 import {
   GridContainer,
@@ -20,16 +21,17 @@ const ProductsList = () => {
     addProductToCart,
     checkDuplicatesInCart,
     increaseCartQuantity,
-    products,
   } = context;
+
+  const productsContext = useContext(ProductsContext);
 
   return (
     <>
-      {products.length === 0 ? (
+      {productsContext.products.length === 0 ? (
         <h3>No results</h3>
       ) : (
         <GridContainer>
-          {products.map((product) => {
+          {productsContext.products.map((product) => {
             const {
               productId,
               productName,

@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import CosmeticStoreContext from "../../context";
+import ProductsContext from "../../context/productsContext";
 import { SearchProductWrapper } from "./filtersStyles/ProductNameFilterStyles";
 
 const ProductNameFilter = () => {
-  const context = useContext(CosmeticStoreContext);
+  const context = useContext(ProductsContext);
   const { searchProductName, handleSearchNameChange } = context;
 
   return (

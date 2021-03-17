@@ -5,9 +5,10 @@ import {
   CheckboxWrapper,
   GreenCheckbox,
 } from "./filtersStyles/FreeDeliveryFilterStyles";
+import ProductsContext from "../../context/productsContext";
 
 const FreeDeliveryFilter = () => {
-  const context = useContext(CosmeticStoreContext);
+  const context = useContext(ProductsContext);
   const { freeDelivery, handleFreeDeliveryChange } = context;
 
   return (

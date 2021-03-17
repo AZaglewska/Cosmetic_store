@@ -8,11 +8,12 @@ import {
   BootstrapInput,
   useStyles,
 } from "./filtersStyles/CategoryFilterStyles";
+import ProductsContext from "../../context/productsContext";
 
 const CategoryFilter = () => {
   const classes = useStyles();
 
-  const context = useContext(CosmeticStoreContext);
+  const context = useContext(ProductsContext);
 
   const { initialProductState, category, handleCategoryChange } = context;
 
