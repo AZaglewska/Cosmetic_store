@@ -13,6 +13,7 @@ export const MobileNavCont = styled.div`
   width: 100%;
   padding-top: 100px;
   animation: ${show} 0.5s ease-in-out forwards;
+
   @media (min-width: 881px) {
     display: none;
   }
@@ -23,8 +24,7 @@ export const MobileLinkNav = styled(Link)`
   font-size: ${({ theme }) => theme.fontSize.xl};
   color: ${({ theme }) => theme.colors.lightGrey};
   font-weight: 500;
-  display: inline-block;
-  position: relative;
+  /* position: relative; */
   margin-bottom: auto;
   animation: ${zoomIn} 0.8s;
 
