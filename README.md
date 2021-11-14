@@ -2,8 +2,7 @@
 
 ## Overview:
 
-A cosmetic store website created in React.
-In this store users can add products to cart, delete products, increase/decrease products quantity in cart. It is also possible to filter products by categories or price, search by name or choose a free delivery option. Moreover, products from the shopping cart are stored in the local storage. This project uses React.js, React-Router-dom for navigation, Contentful CMS for dynamically updating the data and Styled-components/Material-UI for layout styles.
+A First part of E-commerce cosmetic store created in React.js. In this page there are mainly ui functionalities such as: adding products to the cart, removing products from the list and various filtering products options. Moreover, products from the shopping cart are stored in the local storage. This project uses React.js, React-Router-dom for navigation, Contentful CMS for dynamically updating the data and Styled-components/Material-UI for layout styles.
 
 ### The Most significant features:
 
@@ -13,6 +12,7 @@ In this store users can add products to cart, delete products, increase/decrease
 - current number of products in shopping bag and a total sum for purchases,
 - filtering products by category, price, name or choosing a free delivery option,
 - picking a discounted random products from the products carousel,
+- shopping products are stored in the local storage,
 - paying for purchases using PayPal sandbox,
 - leaving a message via contact form.
 
@@ -20,7 +20,7 @@ In this store users can add products to cart, delete products, increase/decrease
 
 ## Live demo
 
-Live demo:
+Live demo: https://evecosmeticsworld.netlify.app/
 
 ## Main Tech stack:
 
@@ -55,6 +55,10 @@ If you checked your node and npm run a development server with:
 - npm start
 
 Browser will automatically open localhost:3000/
+
+## Future updates and modernisation:
+
+This website is the first part of my E-commerce shop project, showing only the ui functionalites. In the future I want to create a full E-commerce shop version with login and registation panel for customers. In addition, the database will be also crated to store all the customers details and purchase histories.
 
 ## Website Inspiration:
 
