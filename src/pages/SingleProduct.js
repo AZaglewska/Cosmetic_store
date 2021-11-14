@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import CosmeticStoreContext from "../context";
 import { routes } from "../routes/index";
 import Button from "../components/atoms/Button";
 import navbarImage from "../assets/navbarImages/navbarImage3.jpg";
@@ -15,14 +14,15 @@ import {
   SingleProductLink,
   BackIcon,
 } from "./stylesPages/SingleProductStyles";
+import CartContext from "../context/cartContext";
 
 const SingleProduct = (props) => {
-  const context = useContext(CosmeticStoreContext);
+  const cartContext = useContext(CartContext);
   const {
     addProductToCart,
     checkDuplicatesInCart,
     increaseCartQuantity,
-  } = context;
+  } = cartContext;
 
   const {
     productId,
