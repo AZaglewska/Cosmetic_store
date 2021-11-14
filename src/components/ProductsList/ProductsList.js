@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import CosmeticStoreContext from "../../context";
+import CartContext from "../../context/cartContext";
 import ProductsContext from "../../context/productsContext";
 import Button from "../atoms/Button";
 import {
@@ -16,12 +16,12 @@ import {
 } from "./ProductListStyles";
 
 const ProductsList = () => {
-  const context = useContext(CosmeticStoreContext);
+  const cartContext = useContext(CartContext);
   const {
     addProductToCart,
     checkDuplicatesInCart,
     increaseCartQuantity,
-  } = context;
+  } = cartContext;
 
   const productsContext = useContext(ProductsContext);
 
