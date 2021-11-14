@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import CosmeticStoreContext from "../../context";
 import { Link } from "react-router-dom";
 import { routes } from "../../routes";
 import Carousel from "react-multi-carousel";
@@ -16,6 +15,8 @@ import {
   CarouselLink,
   CarouselIconSvg,
 } from "./DiscountedProductsCarouselStyles";
+import ProductsContext from "../../context/productsContext";
+import CartContext from "../../context/cartContext";
 
 const responsive = {
   desktop: {
@@ -36,14 +37,16 @@ const responsive = {
 };
 
 const DiscountedProductsCarousel = ({ deviceType }) => {
-  const context = useContext(CosmeticStoreContext);
+  const productsContext = useContext(ProductsContext);
+  const cartContext = useContext(CartContext);
+
+  const { discountProducts } = productsContext;
 
   const {
-    discountProducts,
     addDiscountedProduct,
     increaseCartQuantity,
     checkDuplicatesInCart,
-  } = context;
+  } = cartContext;
 
   return (
     <>
