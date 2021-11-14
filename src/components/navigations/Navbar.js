@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
-import CosmeticStoreContext from "../../context";
-import { routes } from "../../routes";
-import bagIcon from "../../assets/icons/shopping-bags.svg";
-import searchIcon from "../../assets/icons/loupe.svg";
-import Button from "../atoms/Button";
-import MobileNavbar from "./MobileNavbar";
-import SearchBar from "./SearchBar";
+import React, { useContext } from 'react';
+import { routes } from '../../routes';
+import bagIcon from '../../assets/icons/shopping-bags.svg';
+import searchIcon from '../../assets/icons/loupe.svg';
+import Button from '../atoms/Button';
+import MobileNavbar from './MobileNavbar';
+import SearchBar from './SearchBar';
 import {
   StyledContainerNav,
   LinkCont,
@@ -14,20 +13,23 @@ import {
   StyledCircle,
   NavLink,
   StyledHamburgerMenuIcon,
-} from "./navigationsStyles/NavbarStyles";
+} from './navigationsStyles/NavbarStyles';
+import CartContext from '../../context/cartContext';
+import NotificationContext from '../../context/notificationContext';
 
 const Navbar = () => {
-  const context = useContext(CosmeticStoreContext);
-
+  const notificationContext = useContext(NotificationContext);
   const {
-    handleCartOpen,
-    cartQuantity,
     handleSearchBarOpen,
     isSearchBarOpen,
     isHamburgerMenuOpen,
     toggleHamburgerMenuOpen,
     closeHamburgerMenu,
-  } = context;
+  } = notificationContext;
+
+  const cartContext = useContext(CartContext);
+
+  const { handleCartOpen, cartQuantity } = cartContext;
 
   return (
     <>
@@ -46,7 +48,7 @@ const Navbar = () => {
             height={25}
             strokeWidth={2}
             rotate={0}
-            color={isHamburgerMenuOpen ? "#ced4da" : "white"}
+            color={isHamburgerMenuOpen ? '#ced4da' : 'white'}
             borderRadius={50}
             animationDuration={0.5}
           />
@@ -63,10 +65,10 @@ const Navbar = () => {
                 {cartQuantity >= 1 ? (
                   <StyledCircle>{cartQuantity}</StyledCircle>
                 ) : (
-                  ""
+                  ''
                 )}
 
-                {cartQuantity >= 99 ? <StyledCircle>99+</StyledCircle> : ""}
+                {cartQuantity >= 99 ? <StyledCircle>99+</StyledCircle> : ''}
               </Button>
               <Button
                 searchIcon={searchIcon}
