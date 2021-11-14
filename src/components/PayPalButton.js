@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import PaypalExpressBtn from "react-paypal-express-checkout";
-import CosmeticStoreContext from "../context";
+import CartContext from "../context/cartContext";
 
 const PayPalButton = () => {
-  const context = useContext(CosmeticStoreContext);
-  const { cartTotal, clearAndCloseCart } = context;
+  const cartContext = useContext(CartContext);
+  const { cartTotal, clearAndCloseCart } = cartContext;
 
   const onSuccessPayment = (payment) => {
     console.log(payment);
