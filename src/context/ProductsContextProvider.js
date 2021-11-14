@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Root from "../Root";
 import ProductsContext from "./productsContext";
 
 const ProductsContextProvider = ({ children }) => {
@@ -126,6 +125,10 @@ const ProductsContextProvider = ({ children }) => {
 
     setProducts([...tempProducts]);
   };
+
+  useEffect(() => {
+    filterProducts();
+  }, [category, price, searchProductName, freeDelivery]);
 
   return (
     <ProductsContext.Provider
