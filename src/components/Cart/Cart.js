@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import CosmeticStoreContext from "../../context";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
@@ -7,9 +6,10 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { Button } from "@material-ui/core";
 import { useStyles, CartTotal, CartTitle, CartLink } from "./CartStyles";
 import PayPalButton from "../PayPalButton";
+import CartContext from "../../context/cartContext";
 
 const Cart = () => {
-  const context = useContext(CosmeticStoreContext);
+  const cartContext = useContext(CartContext);
 
   const {
     isCartOpen,
@@ -21,7 +21,7 @@ const Cart = () => {
     increaseCartQuantity,
     decreaseCartQuantity,
     cartTotal,
-  } = context;
+  } = cartContext;
 
   const classes = useStyles();
 
