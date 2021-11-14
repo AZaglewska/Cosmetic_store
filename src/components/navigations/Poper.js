@@ -3,21 +3,28 @@ import Popper from "@material-ui/core/Popper";
 import { Button } from "@material-ui/core";
 import LocalMallIcon from "@material-ui/icons/LocalMall";
 import Fade from "@material-ui/core/Fade";
-import CosmeticStoreContext from "../../context";
 import { useStyles, PoperLink } from "./navigationsStyles/PoperStyles";
+import CartContext from "../../context/cartContext";
+import NotificationContext from "../../context/notificationContext";
 
 const Poper = () => {
   const classes = useStyles();
 
-  const context = useContext(CosmeticStoreContext);
+  const notificationContext = useContext(NotificationContext);
+
   const {
     showProductsPoper,
     poperAnchor,
     popperProducts,
+  } = notificationContext;
+
+  const cartContext = useContext(CartContext);
+
+  const {
     addProductToCart,
     checkDuplicatesInCart,
     increaseCartQuantity,
-  } = context;
+  } = cartContext;
 
   return (
     <div>

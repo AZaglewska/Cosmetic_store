@@ -8,11 +8,11 @@ import iconRight from "../../assets/icons/next.svg";
 import iconLeft from "../../assets/icons/left-arrow.svg";
 import { StyledSlider, StyledSliderContent, StyledIcon } from "./SliderStyles";
 import styles from "./Slider.css";
-import CosmeticStoreContext from "../../context";
+import NotificationContext from "../../context/notificationContext";
 
 const Slider = () => {
-  const context = useContext(CosmeticStoreContext);
-  const { showProductsPoper } = context;
+  const notificationContext = useContext(NotificationContext);
+  const { showProductsPoper } = notificationContext;
 
   return (
     <>

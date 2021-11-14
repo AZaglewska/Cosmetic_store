@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import CosmeticStoreContext from "../../context";
 import searchIcon from "../../assets/icons/loupe.svg";
 import closeIcon from "../../assets/icons/cancel.svg";
 import Button from "../atoms/Button";
@@ -9,16 +8,17 @@ import {
   StyledInput,
   SearchInputIcon,
 } from "./navigationsStyles/SearchBarStyles";
+import NotificationContext from "../../context/notificationContext";
 
 const SearchBar = () => {
-  const context = useContext(CosmeticStoreContext);
+  const notificationContext = useContext(NotificationContext);
 
   const {
     handleSearchBarClose,
     handleSearchProductNavInputChange,
     searchProductNavInput,
     closeProductsPopper,
-  } = context;
+  } = notificationContext;
 
   return (
     <>
