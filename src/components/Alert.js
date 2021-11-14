@@ -4,7 +4,7 @@ import MaterialAlert from "@material-ui/lab/Alert";
 import IconButton from "@material-ui/core/IconButton";
 import Collapse from "@material-ui/core/Collapse";
 import CloseIcon from "@material-ui/icons/Close";
-import CosmeticStoreContext from "../context";
+import NotificationContext from "../context/notificationContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,8 +26,8 @@ const useStyles = makeStyles((theme) => ({
 const Alert = () => {
   const classes = useStyles();
 
-  const context = useContext(CosmeticStoreContext);
-  const { isAlertOpen, closeAlert, alertContent } = context;
+  const notificationContext = useContext(NotificationContext);
+  const { isAlertOpen, closeAlert, alertContent } = notificationContext;
 
   return (
     <div className={classes.root}>
