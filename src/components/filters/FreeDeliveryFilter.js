@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import CosmeticStoreContext from "../../context";
 import { FormControlLabel } from "@material-ui/core";
 import {
   CheckboxWrapper,
@@ -8,8 +7,8 @@ import {
 import ProductsContext from "../../context/productsContext";
 
 const FreeDeliveryFilter = () => {
-  const context = useContext(ProductsContext);
-  const { freeDelivery, handleFreeDeliveryChange } = context;
+  const productsContext = useContext(ProductsContext);
+  const { freeDelivery, handleFreeDeliveryChange } = productsContext;
 
   return (
     <CheckboxWrapper>

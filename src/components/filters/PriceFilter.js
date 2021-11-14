@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import CosmeticStoreContext from "../../context";
 import { useStyles, PriceWrapper } from "./filtersStyles/PriceFilterStyles";
 import Slider from "@material-ui/core/Slider";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -23,8 +22,8 @@ const ValueLabelComponent = (props) => {
 const PriceFilter = () => {
   const classes = useStyles();
 
-  const context = useContext(ProductsContext);
-  const { price, maxPrice, handlePriceChange } = context;
+  const productsContext = useContext(ProductsContext);
+  const { price, maxPrice, handlePriceChange } = productsContext;
   return (
     <PriceWrapper>
       <label htmlFor="priceFilter">product price: {price}$</label>

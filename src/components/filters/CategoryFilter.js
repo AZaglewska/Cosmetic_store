@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import CosmeticStoreContext from "../../context";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
@@ -13,9 +12,13 @@ import ProductsContext from "../../context/productsContext";
 const CategoryFilter = () => {
   const classes = useStyles();
 
-  const context = useContext(ProductsContext);
+  const productsContext = useContext(ProductsContext);
 
-  const { initialProductState, category, handleCategoryChange } = context;
+  const {
+    initialProductState,
+    category,
+    handleCategoryChange,
+  } = productsContext;
 
   const productsCategories = [
     "all",

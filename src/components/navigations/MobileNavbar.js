@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import CosmeticStoreContext from "../../context";
+import NotificationContext from "../../context/notificationContext";
 import { routes } from "../../routes";
 import {
   MobileNavCont,
@@ -10,9 +10,9 @@ import {
 } from "./navigationsStyles/MobileNavbarStyles";
 
 const MobileNavbar = () => {
-  const context = useContext(CosmeticStoreContext);
+  const notificationContext = useContext(NotificationContext);
 
-  const { toggleHamburgerMenuOpen } = context;
+  const { toggleHamburgerMenuOpen } = notificationContext;
 
   return (
     <>
